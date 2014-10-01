@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:cxf="http://cxf.apache.org/core" 
+       xmlns:wsp="http://www.w3.org/2006/07/ws-policy"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://cxf.apache.org/jaxrs
+		http://cxf.apache.org/schemas/jaxrs.xsd
+		http://cxf.apache.org/jaxws 
+		http://cxf.apache.org/schemas/jaxws.xsd 
+		http://cxf.apache.org/core 
+		http://cxf.apache.org/schemas/core.xsd" default-lazy-init="false">
+
+	<bean id="jaxbProvider" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider"/> 
+  	<bean id="jsonProvider" class="org.apache.cxf.jaxrs.provider.json.JSONProvider"/>
+    
+	<bean id="searchService" class="ws.SearchServiceImpl" />
+	   
+ <jaxws:endpoint id="test" address="/ws">
+	<jaxws:implementor>
+		<ref bean="searchService"/>
+	</jaxws:implementor>
+   <jaxws:properties>
+    	<entry key="mtom-enabled" value="true"/>
+    	<entry key="attachment-memory-threshold" value="4000000"/>
+   </jaxws:properties>
+    	
+ </jaxws:endpoint>
+	
+</beans>
