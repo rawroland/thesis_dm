@@ -52,7 +52,7 @@ public class EmployeeDAOTest {
 		Employee actual = employeeDAO.findByUsernameAndPassword("rolandawemo",
 				"rawroro");
 		assertEquals("Found User with username and password with correct id",
-				1, actual.getId());
+				2, actual.getId());
 		assertEquals("The retrieved Employee is a general manager",
 				"general manager", actual.getRole());
 	}
