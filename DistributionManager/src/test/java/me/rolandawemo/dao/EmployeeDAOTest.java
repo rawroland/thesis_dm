@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import me.rolandawemo.dao.model.Employee;
 
@@ -135,6 +136,16 @@ public class EmployeeDAOTest {
 		assertEquals(
 				"Count of the entries in the db after delete is consistent.",
 				expected, actual);
+	}
+	
+	@DirtiesContext
+	@Test 
+	/**
+	 * @todo Equals or contains
+	 */
+	public void getAllEmployees() {
+		ArrayList<Employee> employees = this.employeeDAO.getAll();
+		assertEquals("Correct number of employees", 2, employees.size());
 	}
 
 }

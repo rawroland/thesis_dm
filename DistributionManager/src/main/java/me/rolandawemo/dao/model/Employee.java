@@ -16,6 +16,7 @@ public class Employee {
 		this.id = id;
 		this.givenname = givenname;
 		this.surname = surname;
+		this.role = role;
 		this.username = username;
 	}
 

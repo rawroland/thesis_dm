@@ -1,11 +1,15 @@
 package me.rolandawemo.dao;
 
 import java.lang.Math;
+import java.util.ArrayList;
+
 import me.rolandawemo.dao.mappers.EmployeeRowMapper;
 import me.rolandawemo.dao.model.Employee;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+
 import static org.apache.commons.lang.StringUtils.leftPad;
 
 /**
@@ -76,6 +80,18 @@ public class EmployeeDAO implements IEmployeeDAO {
 			e.printStackTrace();
 		}
 		return employeeDeleted;
+	}
+
+	@Override
+	public ArrayList<Employee> getAll() {
+		String query = "SELECT Employee.id, Employee.givenname, Employee.surname, Employee.role, Employee.username FROM employees as Employee WHERE 1";
+		ArrayList<Employee> employees = new ArrayList<Employee>();
+		try {
+			employees = (ArrayList<Employee>) this.jdbcTemplate.query(query, new EmployeeRowMapper());
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return employees;
 	}
 
 	public JdbcTemplate getJdbcTemplate() {

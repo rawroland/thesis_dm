@@ -1,9 +1,12 @@
 package ws;
 
+import java.util.ArrayList;
+
 import javax.jws.WebService;
 
 import ws.services.EmployeeManagementService;
 import me.rolandawemo.dao.EmployeeDAO;
+import me.rolandawemo.dao.model.Employee;
 
 @WebService(endpointInterface = "ws.services.EmployeeManagementService", serviceName = "DMEmployeeManagementService", portName = "DMEmployeeManagementPort")
 public class DMEmployeeManagement implements EmployeeManagementService {
@@ -42,6 +45,11 @@ public class DMEmployeeManagement implements EmployeeManagementService {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public ArrayList<Employee> searchClients() {
+		return this.employeeDAO.getAll();
 	}
 
 	public EmployeeDAO getEmployeeDAO() {

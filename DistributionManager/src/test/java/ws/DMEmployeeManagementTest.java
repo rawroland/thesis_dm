@@ -1,6 +1,9 @@
 package ws;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
 import me.rolandawemo.dao.EmployeeDAO;
 import me.rolandawemo.dao.model.Employee;
 
@@ -40,6 +43,10 @@ public class DMEmployeeManagementTest {
 		when(this.employeeDAO.create("John", "Doe", "johndoe", "cashier")).thenReturn(1);
 		when(this.employeeDAO.update(2 ,"John", "Doe", "johndoe", "cashier")).thenReturn(1);
 		when(this.employeeDAO.delete(2)).thenReturn(1);
+		ArrayList<Employee> employees = new ArrayList<Employee>();
+		employees.add(new Employee(1, "Roland", "Awemo", "general manager", "rolandawemo"));
+		employees.add(new Employee(1, "Jane", "Doe", "cashier", "janedoe"));
+		when(this.employeeDAO.getAll()).thenReturn(employees);
 	}
 
 	@After
@@ -66,6 +73,13 @@ public class DMEmployeeManagementTest {
 		boolean actual = this.dm.deleteEmployee(2);
 		boolean expected = true;
 		assertEquals("Employee successfully deleted", expected, actual);
+	}
+	
+	@Test
+	public void getAllEmployees() {
+		ArrayList<Employee> employees = this.dm.searchClients();
+		int expected = 2;
+		assertEquals("Returning correct number of employees", expected, employees.size());
 	}
 
 }

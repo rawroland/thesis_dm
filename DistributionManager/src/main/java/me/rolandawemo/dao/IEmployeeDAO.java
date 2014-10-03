@@ -1,5 +1,7 @@
 package me.rolandawemo.dao;
 
+import java.util.ArrayList;
+
 import me.rolandawemo.dao.model.Employee;
 
 /**
@@ -51,4 +53,6 @@ public interface IEmployeeDAO {
 	 * @return String Generated password.
 	 */
 	String generatePassword(int length);
+	
+	ArrayList<Employee> getAll();
 }

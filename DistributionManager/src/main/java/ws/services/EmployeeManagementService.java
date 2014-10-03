@@ -1,11 +1,15 @@
 package ws.services;
 
+import java.util.ArrayList;
+
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
+
+import me.rolandawemo.dao.model.Employee;
 
 @WebService
 public interface EmployeeManagementService {
@@ -29,4 +33,7 @@ public interface EmployeeManagementService {
 
 	@WebMethod
 	public boolean deleteEmployee(@WebParam(name = "id") int id);
+	
+	@WebMethod 
+	public ArrayList<Employee> searchClients();
 }
