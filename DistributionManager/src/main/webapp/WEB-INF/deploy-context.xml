@@ -16,9 +16,11 @@
 	default-lazy-init="false">
 
 	
-
+	<import resource="classpath:spring.xml"/>
 	<bean id="distributionManagerAuthentication" class="ws.DMAuthentication" />
-	<bean id="distributionManagerEmployeeManagement" class="ws.DMEmployeeManagement" />
+	<bean id="distributionManagerEmployeeManagement" class="ws.DMEmployeeManagement">
+	    <property name="employeeDAO" ref="employeeDAO"/>
+	</bean>
 
 	<jaxws:endpoint id="authenticate" address="/authenticate">
 		<jaxws:implementor>

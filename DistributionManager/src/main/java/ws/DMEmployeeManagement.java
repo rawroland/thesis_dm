@@ -5,7 +5,7 @@ import javax.jws.WebService;
 import ws.services.EmployeeManagementService;
 import me.rolandawemo.dao.EmployeeDAO;
 
-@WebService(endpointInterface="ws.services.EmployeeManagementService", serviceName="employeeManagement")
+@WebService(endpointInterface = "ws.services.EmployeeManagementService", serviceName = "DMEmployeeManagementService", portName = "DMEmployeeManagementPort")
 public class DMEmployeeManagement implements EmployeeManagementService {
 
 	private EmployeeDAO employeeDAO;
@@ -35,9 +35,9 @@ public class DMEmployeeManagement implements EmployeeManagementService {
 	}
 
 	@Override
-	public boolean deleteEmployee(int id){
+	public boolean deleteEmployee(int id) {
 		int employeeDeleted = this.employeeDAO.delete(id);
-		if(1 == employeeDeleted) {
+		if (1 == employeeDeleted) {
 			return true;
 		} else {
 			return false;
