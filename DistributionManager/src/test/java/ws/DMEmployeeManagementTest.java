@@ -44,9 +44,12 @@ public class DMEmployeeManagementTest {
 		when(this.employeeDAO.update(2 ,"John", "Doe", "johndoe", "cashier")).thenReturn(1);
 		when(this.employeeDAO.delete(2)).thenReturn(1);
 		ArrayList<Employee> employees = new ArrayList<Employee>();
-		employees.add(new Employee(1, "Roland", "Awemo", "general manager", "rolandawemo"));
-		employees.add(new Employee(1, "Jane", "Doe", "cashier", "janedoe"));
+		Employee generalManager = new Employee(1, "Roland", "Awemo", "general manager", "rolandawemo");
+		employees.add(generalManager);
+		Employee cashier = new Employee(2, "Jane", "Doe", "cashier", "janedoe");
+		employees.add(cashier);
 		when(this.employeeDAO.getAll()).thenReturn(employees);
+		when(this.employeeDAO.getById(2)).thenReturn(cashier);
 	}
 
 	@After
@@ -76,10 +79,19 @@ public class DMEmployeeManagementTest {
 	}
 	
 	@Test
-	public void getAllEmployees() {
-		ArrayList<Employee> employees = this.dm.searchClients();
+	public void searchAllEmployees() {
+		ArrayList<Employee> employees = this.dm.searchEmployees();
 		int expected = 2;
 		assertEquals("Returning correct number of employees", expected, employees.size());
+	}
+	
+	@Test
+	public void searchEmployeebyId() {
+		ArrayList<Employee> employees = this.dm.searchEmployees(2);
+		int expected = 1;
+		assertEquals("Found only one employee with this id.", expected, employees.size());
+		String expectedUsername = "janedoe";
+		assertEquals("Retrieved the correct employee", expectedUsername, employees.get(0).getUsername());
 	}
 
 }

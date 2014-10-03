@@ -55,4 +55,6 @@ public interface IEmployeeDAO {
 	String generatePassword(int length);
 	
 	ArrayList<Employee> getAll();
+	
+	Employee getById(int id);
 }

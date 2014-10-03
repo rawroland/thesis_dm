@@ -48,9 +48,18 @@ public class DMEmployeeManagement implements EmployeeManagementService {
 	}
 
 	@Override
-	public ArrayList<Employee> searchClients() {
+	public ArrayList<Employee> searchEmployees() {
 		return this.employeeDAO.getAll();
 	}
+
+	@Override
+	public ArrayList<Employee> searchEmployees(int id) {
+		Employee employee = this.employeeDAO.getById(id);
+		ArrayList<Employee> employees = new ArrayList<Employee>();
+		employees.add(employee);
+		return employees;
+	}
+
 
 	public EmployeeDAO getEmployeeDAO() {
 		return employeeDAO;
@@ -59,5 +68,4 @@ public class DMEmployeeManagement implements EmployeeManagementService {
 	public void setEmployeeDAO(EmployeeDAO employeeDAO) {
 		this.employeeDAO = employeeDAO;
 	}
-
 }

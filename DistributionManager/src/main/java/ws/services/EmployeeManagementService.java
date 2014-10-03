@@ -35,5 +35,8 @@ public interface EmployeeManagementService {
 	public boolean deleteEmployee(@WebParam(name = "id") int id);
 	
 	@WebMethod 
-	public ArrayList<Employee> searchClients();
+	public ArrayList<Employee> searchEmployees();
+	
+	@WebMethod 
+	public ArrayList<Employee> searchEmployees(int id);
 }

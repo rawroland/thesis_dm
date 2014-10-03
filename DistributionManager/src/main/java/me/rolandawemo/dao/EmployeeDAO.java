@@ -94,6 +94,19 @@ public class EmployeeDAO implements IEmployeeDAO {
 		return employees;
 	}
 
+	@Override
+	public Employee getById(int id) {
+		String query = "SELECT Employee.id, Employee.givenname, Employee.surname, Employee.role, Employee.username FROM employees as Employee WHERE Employee.id = ?";
+		Employee emp = new Employee();
+		try {
+			emp = this.jdbcTemplate.queryForObject(query, new Integer[] {id}, new EmployeeRowMapper());
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+
+		return emp;
+	}
+
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
 	}

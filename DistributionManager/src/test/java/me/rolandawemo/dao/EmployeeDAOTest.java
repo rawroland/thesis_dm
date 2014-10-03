@@ -147,5 +147,13 @@ public class EmployeeDAOTest {
 		ArrayList<Employee> employees = this.employeeDAO.getAll();
 		assertEquals("Correct number of employees", 2, employees.size());
 	}
+	
+	@DirtiesContext
+	@Test 
+	public void getEmployeeById() {
+		String expected = "Jane";
+		Employee employee = this.employeeDAO.getById(2);
+		assertEquals("Correct firstname found", expected, employee.getGivenname());
+	}
 
 }
