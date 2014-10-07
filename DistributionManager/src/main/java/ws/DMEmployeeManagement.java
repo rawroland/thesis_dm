@@ -48,16 +48,14 @@ public class DMEmployeeManagement implements EmployeeManagementService {
 	}
 
 	@Override
-	public ArrayList<Employee> searchEmployees() {
+	public ArrayList<Employee> getAllEmployees() {
 		return this.employeeDAO.getAll();
 	}
 
 	@Override
-	public ArrayList<Employee> searchEmployees(int id) {
+	public Employee searchEmployeesById(int id) {
 		Employee employee = this.employeeDAO.getById(id);
-		ArrayList<Employee> employees = new ArrayList<Employee>();
-		employees.add(employee);
-		return employees;
+		return employee;
 	}
 
 

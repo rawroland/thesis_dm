@@ -80,18 +80,16 @@ public class DMEmployeeManagementTest {
 	
 	@Test
 	public void searchAllEmployees() {
-		ArrayList<Employee> employees = this.dm.searchEmployees();
+		ArrayList<Employee> employees = this.dm.getAllEmployees();
 		int expected = 2;
 		assertEquals("Returning correct number of employees", expected, employees.size());
 	}
 	
 	@Test
 	public void searchEmployeebyId() {
-		ArrayList<Employee> employees = this.dm.searchEmployees(2);
-		int expected = 1;
-		assertEquals("Found only one employee with this id.", expected, employees.size());
+		Employee employee = this.dm.searchEmployeesById(2);
 		String expectedUsername = "janedoe";
-		assertEquals("Retrieved the correct employee", expectedUsername, employees.get(0).getUsername());
+		assertEquals("Retrieved the correct employee", expectedUsername, employee.getUsername());
 	}
 
 }

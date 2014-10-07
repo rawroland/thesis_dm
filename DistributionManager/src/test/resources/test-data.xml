@@ -1,4 +1,0 @@
-<dataset>
-	<employees id="-1" givenname="Roland" surname="Awemo" username="rolandawemo" password="rawroro" role="general manager"/>
-	<employees id="-2" givenname="Jane" surname="Doe" username="janedoe" password="janedoe" role="cashier"/>
-</dataset>

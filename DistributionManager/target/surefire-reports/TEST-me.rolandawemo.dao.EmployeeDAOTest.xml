@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="2.633" errors="0" skipped="0" tests="7" name="me.rolandawemo.dao.EmployeeDAOTest">
+<testsuite failures="0" time="1.465" errors="0" skipped="0" tests="7" name="me.rolandawemo.dao.EmployeeDAOTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_25\jre\bin"/>
@@ -61,11 +61,11 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="1.385" classname="me.rolandawemo.dao.EmployeeDAOTest" name="addEmployee"/>
-  <testcase time="0.23" classname="me.rolandawemo.dao.EmployeeDAOTest" name="editEmployee"/>
-  <testcase time="0.192" classname="me.rolandawemo.dao.EmployeeDAOTest" name="deleteEmployee"/>
-  <testcase time="0.23" classname="me.rolandawemo.dao.EmployeeDAOTest" name="getAllEmployees"/>
-  <testcase time="0.236" classname="me.rolandawemo.dao.EmployeeDAOTest" name="getEmployeeById"/>
-  <testcase time="0.194" classname="me.rolandawemo.dao.EmployeeDAOTest" name="findByUsernameAndPasswordGeneralManager"/>
-  <testcase time="0.166" classname="me.rolandawemo.dao.EmployeeDAOTest" name="findByUsernameAndPasswordCashier"/>
+  <testcase time="0.22" classname="me.rolandawemo.dao.EmployeeDAOTest" name="getEmployeeById"/>
+  <testcase time="0.186" classname="me.rolandawemo.dao.EmployeeDAOTest" name="getAllEmployees"/>
+  <testcase time="0.197" classname="me.rolandawemo.dao.EmployeeDAOTest" name="deleteEmployee"/>
+  <testcase time="0.249" classname="me.rolandawemo.dao.EmployeeDAOTest" name="editEmployee"/>
+  <testcase time="0.238" classname="me.rolandawemo.dao.EmployeeDAOTest" name="addEmployee"/>
+  <testcase time="0.179" classname="me.rolandawemo.dao.EmployeeDAOTest" name="findByUsernameAndPasswordGeneralManager"/>
+  <testcase time="0.196" classname="me.rolandawemo.dao.EmployeeDAOTest" name="findByUsernameAndPasswordCashier"/>
 </testsuite>
