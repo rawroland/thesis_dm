@@ -5,10 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 import me.rolandawemo.dao.ClientDAO;
-import me.rolandawemo.dao.ClientDAO;
 import me.rolandawemo.dao.model.Client;
-import me.rolandawemo.dao.model.Client;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -61,14 +58,15 @@ public class DMClientManagementTest {
 		boolean actual = this.dm.addClient("Mr", "Roland", "Awemo", "MTN",
 				"supplier");
 		boolean expected = true;
+		verify(this.clientDAO, times(1)).create("Mr", "Roland", "Awemo", "MTN", "supplier");
 		assertEquals("Client successfully added", expected, actual);
 	}
 
 	@Test
 	public void editedClient() {
-		boolean actual = this.dm.editClient(1, "Mr", "Roland", "Awemo", "MTN",
-				"supplier");
+		boolean actual = this.dm.editClient(1, "Mr", "Roland", "Awemo", "MTN", "supplier");
 		boolean expected = true;
+		verify(this.clientDAO, times(1)).update(1, "Mr", "Roland", "Awemo", "MTN", "supplier");
 		assertEquals("Client successfully edited", expected, actual);
 	}
 
@@ -76,6 +74,7 @@ public class DMClientManagementTest {
 	public void deletedClient() {
 		boolean actual = this.dm.deleteClient(1);
 		boolean expected = true;
+		verify(this.clientDAO, times(1)).delete(1);
 		assertEquals("Client successfully deleted", expected, actual);
 	}
 
@@ -83,14 +82,15 @@ public class DMClientManagementTest {
 	public void searchAllClients() {
 		ArrayList<Client> clients = this.dm.getAllClients();
 		int expected = 2;
-		assertEquals("Returning correct number of employees", expected,
-				clients.size());
+		verify(this.clientDAO, times(1)).getAll();
+		assertEquals("Returning correct number of employees", expected, clients.size());
 	}
 
 	@Test
 	public void searchClientsbyId() {
 		Client client = this.dm.searchClientsById(1);
 		String expectedFirstName = "Roland";
+		verify(this.clientDAO, times(1)).getById(1);
 		assertEquals("Retrieved the correct employee", expectedFirstName,
 				client.getFirstName());
 	}

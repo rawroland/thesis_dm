@@ -61,6 +61,7 @@ public class DMEmployeeManagementTest {
 	public void addedEmployee() {
 		boolean actual = this.dm.addEmployee("John", "Doe", "johndoe", "cashier");
 		boolean expected = true;
+		verify(this.employeeDAO, times(1)).create("John", "Doe", "johndoe", "cashier");
 		assertEquals("Employee successfully added", expected, actual);
 	}
 	
@@ -68,6 +69,7 @@ public class DMEmployeeManagementTest {
 	public void editedEmployee() {
 		boolean actual = this.dm.editEmployee(2 ,"John", "Doe", "johndoe", "cashier");
 		boolean expected = true;
+		verify(this.employeeDAO, times(1)).update(2 ,"John", "Doe", "johndoe", "cashier");
 		assertEquals("Employee successfully edited", expected, actual);
 	}
 	
@@ -75,6 +77,7 @@ public class DMEmployeeManagementTest {
 	public void deletedEmployee() {
 		boolean actual = this.dm.deleteEmployee(2);
 		boolean expected = true;
+		verify(this.employeeDAO, times(1)).delete(2);
 		assertEquals("Employee successfully deleted", expected, actual);
 	}
 	
@@ -82,6 +85,7 @@ public class DMEmployeeManagementTest {
 	public void searchAllEmployees() {
 		ArrayList<Employee> employees = this.dm.getAllEmployees();
 		int expected = 2;
+		verify(this.employeeDAO, times(1)).getAll();
 		assertEquals("Returning correct number of employees", expected, employees.size());
 	}
 	
@@ -89,6 +93,7 @@ public class DMEmployeeManagementTest {
 	public void searchEmployeebyId() {
 		Employee employee = this.dm.searchEmployeesById(2);
 		String expectedUsername = "janedoe";
+		verify(this.employeeDAO, times(1)).getById(2);
 		assertEquals("Retrieved the correct employee", expectedUsername, employee.getUsername());
 	}
 
