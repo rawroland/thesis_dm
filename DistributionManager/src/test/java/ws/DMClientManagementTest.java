@@ -46,6 +46,9 @@ public class DMClientManagementTest {
 		when(this.clientDAO.delete(1)).thenReturn(1);
 		when(this.clientDAO.getAll()).thenReturn(clients);
 		when(this.clientDAO.getById(1)).thenReturn(supplier);
+		ArrayList<Client> supplierList = new ArrayList<Client>();
+		supplierList.add(supplier);
+		when(this.clientDAO.getClients("Rol")).thenReturn(supplierList);
 	}
 
 	@After
@@ -93,6 +96,16 @@ public class DMClientManagementTest {
 		verify(this.clientDAO, times(1)).getById(1);
 		assertEquals("Retrieved the correct employee", expectedFirstName,
 				client.getFirstName());
+	}
+	
+	@Test
+	public void searchClients() {
+		ArrayList<Client> clients = this.dm.searchClients("Rol");
+		int expectedCount = 1;
+		assertEquals("Return correct number of clients", expectedCount, clients.size());
+		Client client = clients.get(0);
+		String expectedLastName = "Awemo";
+		assertEquals("Correct client returned", expectedLastName,client.getLastName());
 	}
 
 }

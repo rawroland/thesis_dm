@@ -40,5 +40,8 @@ public interface ClientManagementService {
 	public ArrayList<Client> getAllClients();
 
 	@WebMethod
-	public Client searchClientsById(int id);
+	public Client searchClientsById(@WebParam(name = "id") int id);
+	
+	@WebMethod 
+	public ArrayList<Client> searchClients(@WebParam(name = "query") String query);
 }

@@ -136,5 +136,13 @@ public class ClientDAOTest {
 		Client client = this.clientDAO.getById(2);
 		assertEquals("Correct firstname found", expected, client.getFirstName());
 	}
+	
+	@DirtiesContext
+	@Test
+	public void searchClients() {
+		int expected = 3;
+		ArrayList<Client> clients = this.clientDAO.getClients("J");
+		assertEquals("Correct number of clients returned", expected, clients.size());
+	}
 
 }

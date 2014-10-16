@@ -53,6 +53,11 @@ public class DMClientManagement implements ClientManagementService {
 		return client;
 	}
 
+	@Override
+	public ArrayList<Client> searchClients(String query) {
+		return this.clientDAO.getClients(query);
+	}
+
 	public ClientDAO getClientDAO() {
 		return clientDAO;
 	}

@@ -103,4 +103,17 @@ public class ClientDAO implements IClientDAO {
 		this.jdbcTemplate = jdbc;
 	}
 
+	@Override
+	public ArrayList<Client> getClients(String query) {
+		String sqlQuery = "SELECT Client.id, Client.prefix, Client.firstName, Client.lastName, Client.company, Client.type FROM clients as Client WHERE Client.firstName LIKE '%' || ? || '%'";
+		ArrayList<Client> clients = new ArrayList<Client>();
+		try {
+			clients = (ArrayList<Client>) this.jdbcTemplate.query(sqlQuery, new String[] {query},
+					new ClientRowMapper());
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return clients;
+	}
+
 }
