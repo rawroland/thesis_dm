@@ -24,6 +24,9 @@
 	<bean id="distributionManagerClientManagement" class="ws.DMClientManagement">
 	    <property name="clientDAO" ref="clientDAO"/>
 	</bean>
+	<bean id="distributionManagerAccountManagement" class="ws.DMAccountManagement">
+	    <property name="accountDAO" ref="accountDAO"/>
+	</bean>
 
 	<jaxws:endpoint id="authenticate" address="/authenticate">
 		<jaxws:implementor>
@@ -48,6 +51,16 @@
 	<jaxws:endpoint id="clientManagement" address="/clients">
 		<jaxws:implementor>
 			<ref bean="distributionManagerClientManagement" />
+		</jaxws:implementor>
+		<jaxws:properties>
+			<entry key="mtom-enabled" value="true" />
+			<entry key="attachment-memory-threshold" value="4000000" />
+		</jaxws:properties>
+	</jaxws:endpoint>
+	
+	<jaxws:endpoint id="accountManagement" address="/accounts">
+		<jaxws:implementor>
+			<ref bean="distributionManagerAccountManagement" />
 		</jaxws:implementor>
 		<jaxws:properties>
 			<entry key="mtom-enabled" value="true" />
