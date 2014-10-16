@@ -18,7 +18,7 @@ public interface IClientDAO {
 	 * @param String company The Client's company.
 	 * @param String role The Client's role.
 	 * @param String password The Client's password.
-	 * @return boolean true if the Client was successfully created.
+	 * @return int 1 if the Client was successfully created.
 	 */
 	int create(String prefix, String firstName, String lastName, String company, String type);
 	
@@ -29,7 +29,7 @@ public interface IClientDAO {
 	 * @param String surname The Client's surname.
 	 * @param String company The Client's company.
 	 * @param String role The Client's role.
-	 * @return boolean true if the Client was successfully updated.
+	 * @return int 1 if the Client was successfully updated.
 	 */
 	int update(int id, String prefix, String firstName, String lastName, String company, String type);
 	

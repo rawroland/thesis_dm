@@ -27,6 +27,14 @@ public class ClientDAO implements IClientDAO {
 	public ClientDAO() {
 	}
 
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
+	}
+
+	public void setJdbcTemplate(JdbcTemplate jdbc) {
+		this.jdbcTemplate = jdbc;
+	}
+
 	@Override
 	public int create(String prefix, String firstName, String lastName,
 			String company, String type) {
@@ -93,14 +101,6 @@ public class ClientDAO implements IClientDAO {
 		}
 
 		return client;
-	}
-
-	public JdbcTemplate getJdbcTemplate() {
-		return jdbcTemplate;
-	}
-
-	public void setJdbcTemplate(JdbcTemplate jdbc) {
-		this.jdbcTemplate = jdbc;
 	}
 
 	@Override
