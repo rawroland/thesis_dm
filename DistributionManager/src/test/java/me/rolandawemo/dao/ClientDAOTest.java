@@ -140,8 +140,8 @@ public class ClientDAOTest {
 	@DirtiesContext
 	@Test
 	public void searchClients() {
-		int expected = 3;
-		ArrayList<Client> clients = this.clientDAO.getClients("J");
+		int expected = 2;
+		ArrayList<Client> clients = this.clientDAO.getClients("Joh");
 		assertEquals("Correct number of clients returned", expected, clients.size());
 	}
 

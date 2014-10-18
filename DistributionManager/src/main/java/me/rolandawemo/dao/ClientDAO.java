@@ -3,10 +3,7 @@ package me.rolandawemo.dao;
 import java.util.ArrayList;
 
 import me.rolandawemo.dao.mappers.ClientRowMapper;
-import me.rolandawemo.dao.mappers.EmployeeRowMapper;
 import me.rolandawemo.dao.model.Client;
-import me.rolandawemo.dao.model.Employee;
-
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -105,11 +102,13 @@ public class ClientDAO implements IClientDAO {
 
 	@Override
 	public ArrayList<Client> getClients(String query) {
-		String sqlQuery = "SELECT Client.id, Client.prefix, Client.firstName, Client.lastName, Client.company, Client.type FROM clients as Client WHERE Client.firstName LIKE '%' || ? || '%'";
+		String sqlQuery = "SELECT Client.id, Client.prefix, Client.firstName, Client.lastName, Client.company, Client.type "
+				+ "FROM clients as Client WHERE Client.firstName LIKE '%' || ? || '%' "
+				+ "OR Client.lastName LIKE '%' || ? || '%' OR Client.company LIKE '%' || ? || '%'";
 		ArrayList<Client> clients = new ArrayList<Client>();
 		try {
-			clients = (ArrayList<Client>) this.jdbcTemplate.query(sqlQuery, new String[] {query},
-					new ClientRowMapper());
+			clients = (ArrayList<Client>) this.jdbcTemplate.query(sqlQuery,
+					new String[] { query, query, query }, new ClientRowMapper());
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}

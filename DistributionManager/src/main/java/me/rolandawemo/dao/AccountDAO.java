@@ -1,14 +1,10 @@
 package me.rolandawemo.dao;
 
-import java.util.ArrayList;
+import me.rolandawemo.dao.mappers.AccountRowMapper;
+import me.rolandawemo.dao.model.Account;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import me.rolandawemo.dao.mappers.AccountRowMapper;
-import me.rolandawemo.dao.mappers.ClientRowMapper;
-import me.rolandawemo.dao.model.Account;
-import me.rolandawemo.dao.model.Client;
 
 public class AccountDAO implements IAccountDAO {
 

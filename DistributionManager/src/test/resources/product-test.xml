@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	
-	<bean id="employeeDAO" class="me.rolandawemo.dao.EmployeeDAO">
+	<bean id="productDAO" class="me.rolandawemo.dao.ProductDAO">
 	    <property name="jdbcTemplate" ref="jdbcTemplate"/>
 	</bean>
 	
@@ -15,8 +15,7 @@
 	</bean>
 	
 	<jdbc:embedded-database id="dataSource" type="H2">
-		<jdbc:script location="employee-schema.sql"/>
-		<jdbc:script location="employee-data.sql"/>
+		<jdbc:script location="product-schema.sql"/>
+		<jdbc:script location="product-data.sql"/>
 	</jdbc:embedded-database>
-	
 </beans>

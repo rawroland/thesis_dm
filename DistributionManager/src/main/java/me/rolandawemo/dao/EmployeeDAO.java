@@ -1,6 +1,7 @@
 package me.rolandawemo.dao;
 
-import java.lang.Math;
+import static org.apache.commons.lang.StringUtils.leftPad;
+
 import java.util.ArrayList;
 
 import me.rolandawemo.dao.mappers.EmployeeRowMapper;
@@ -8,9 +9,6 @@ import me.rolandawemo.dao.model.Employee;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-
-import static org.apache.commons.lang.StringUtils.leftPad;
 
 /**
  * Concrete JDBC Employee DAO implementation
