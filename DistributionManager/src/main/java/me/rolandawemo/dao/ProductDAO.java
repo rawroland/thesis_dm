@@ -6,8 +6,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import me.rolandawemo.dao.mappers.ProductRowMapper;
-import me.rolandawemo.dao.mappers.ProductRowMapper;
-import me.rolandawemo.dao.model.Product;
 import me.rolandawemo.dao.model.Product;
 
 public class ProductDAO implements IProductDAO {

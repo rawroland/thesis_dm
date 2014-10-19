@@ -18,6 +18,10 @@
 	<bean id="accountDAO" class="me.rolandawemo.dao.AccountDAO">
 	    <property name="jdbcTemplate" ref="jdbcTemplate"/>
 	</bean>
+    
+	<bean id="productDAO" class="me.rolandawemo.dao.ProductDAO">
+	    <property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
