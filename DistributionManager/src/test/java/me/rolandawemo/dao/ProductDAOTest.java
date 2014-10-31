@@ -54,7 +54,7 @@ public class ProductDAOTest {
 		assertEquals(
 				"Count of the entries in the db before insert is consistent.",
 				expected, actual);
-		int productAdded = this.productDAO.create("MTN 5000 Credit", 50, 1, 4);
+		int productAdded = this.productDAO.create("MTN 5000 Credit", 1, 4);
 		expected = 1;
 		assertEquals("Product successfully added.", expected, productAdded);
 		

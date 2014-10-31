@@ -14,7 +14,7 @@ public interface IProductDAO {
 	 * @param int price The unit price of the product
 	 * @return 1 if the product was successfully added, 0 otherwise
 	 */
-	int create(String name, int quantity, int clientId, int price);
+	int create(String name, int clientId, int price);
 	
 	/**
 	 * Get a list of products filtered by the name.

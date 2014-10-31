@@ -6,5 +6,6 @@ CREATE TABLE IF NOT EXISTS clients (
   lastName varchar(100),
   company varchar(50),
   type varchar(50),
-  constraint client_pk PRIMARY KEY (id)
+  constraint client_pk PRIMARY KEY (id),
+  constraint unique_client UNIQUE (firstName, lastName, company)
 );

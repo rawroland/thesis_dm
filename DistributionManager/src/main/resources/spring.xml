@@ -13,6 +13,7 @@
     
 	<bean id="clientDAO" class="me.rolandawemo.dao.ClientDAO">
 	    <property name="jdbcTemplate" ref="jdbcTemplate"/>
+	    <property name="accountDAO" ref="accountDAO"/>
 	</bean>
     
 	<bean id="accountDAO" class="me.rolandawemo.dao.AccountDAO">
@@ -20,6 +21,10 @@
 	</bean>
     
 	<bean id="productDAO" class="me.rolandawemo.dao.ProductDAO">
+	    <property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
+    
+	<bean id="transactionDAO" class="me.rolandawemo.dao.TransactionDAO">
 	    <property name="jdbcTemplate" ref="jdbcTemplate"/>
 	</bean>
 	

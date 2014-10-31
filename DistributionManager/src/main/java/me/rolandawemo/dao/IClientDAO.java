@@ -44,5 +44,7 @@ public interface IClientDAO {
 	
 	Client getById(int id);
 	
+	ArrayList<Client> getByType(String type);
+	
 	ArrayList<Client> getClients(String query);
 }

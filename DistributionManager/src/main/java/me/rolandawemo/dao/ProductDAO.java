@@ -30,12 +30,12 @@ public class ProductDAO implements IProductDAO {
 	}
 
 	@Override
-	public int create(String name, int quantity, int clientId, int price) {
-		String query = "INSERT INTO products(name, quantity, clientId, price) VALUES(?,?,?,?)";
+	public int create(String name, int clientId, int price) {
+		String query = "INSERT INTO products(name, clientId, price) VALUES(?,?,?)";
 		int productAdded = 0;
 		try {
 			productAdded = this.jdbcTemplate.update(query, new Object[] {
-					name, quantity, clientId, price});
+					name, clientId, price});
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}

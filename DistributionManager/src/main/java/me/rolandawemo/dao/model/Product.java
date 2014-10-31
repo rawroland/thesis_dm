@@ -100,6 +100,14 @@ public class Product {
 			return false;
 		return true;
 	}
+
+	public boolean available(int quantity) {
+		return quantity <= this.quantity;
+	}
+
+	public int calculateTotalPrice(int quantity) {
+		return this.price * quantity;
+	}
 	
 	
 }

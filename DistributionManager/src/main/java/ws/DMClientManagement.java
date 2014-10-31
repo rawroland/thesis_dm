@@ -1,6 +1,7 @@
 package ws;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import me.rolandawemo.dao.ClientDAO;
 import me.rolandawemo.dao.model.Client;
@@ -43,19 +44,21 @@ public class DMClientManagement implements ClientManagementService {
 	}
 
 	@Override
-	public ArrayList<Client> getAllClients() {
+	public ArrayList<Client> searchClients(String query, int id, String type) {
+		if (!"".equals(query)) {
+			return this.clientDAO.getClients(query);
+		}
+		if (0 != id) {
+			Client client = this.clientDAO.getById(id);
+			ArrayList<Client> clients = new ArrayList<Client>();
+			clients.add(client);
+			return clients;
+		}
+		
+		if (!"".equals(type)) {
+			return this.clientDAO.getByType(type);
+		}
 		return this.clientDAO.getAll();
-	}
-
-	@Override
-	public Client searchClientsById(int id) {
-		Client client = this.clientDAO.getById(id);
-		return client;
-	}
-
-	@Override
-	public ArrayList<Client> searchClients(String query) {
-		return this.clientDAO.getClients(query);
 	}
 
 	public ClientDAO getClientDAO() {

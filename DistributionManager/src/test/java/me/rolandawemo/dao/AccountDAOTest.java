@@ -53,13 +53,13 @@ public class AccountDAOTest {
 	public void creditAccount() {
 		JdbcTemplate jdbc = context.getBean("jdbcTemplate", JdbcTemplate.class);
 		int expected = 2000000;
-		int actual =  jdbc.queryForInt("SELECT ammount FROM accounts WHERE clientId=3");
+		int actual =  jdbc.queryForInt("SELECT ammount FROM accounts WHERE clientId=1");
 		assertEquals("Ammount consistent before crediting", expected, actual);
-		actual = this.accountDAO.credit(3, 1000000);
+		actual = this.accountDAO.credit(1, 1000000);
 		expected = 1;
 		assertEquals("Account successfully updated", expected, actual);
 		expected = 3000000;
-		actual =  jdbc.queryForInt("SELECT ammount FROM accounts WHERE clientId=3");
+		actual =  jdbc.queryForInt("SELECT ammount FROM accounts WHERE clientId=1");
 		assertEquals("Ammount consistent after crediting", expected, actual);
 	}
 	
@@ -67,20 +67,20 @@ public class AccountDAOTest {
 	public void debitAccount() {
 		JdbcTemplate jdbc = context.getBean("jdbcTemplate", JdbcTemplate.class);
 		int expected = 2000000;
-		int actual =  jdbc.queryForInt("SELECT ammount FROM accounts WHERE clientId=3");
+		int actual =  jdbc.queryForInt("SELECT ammount FROM accounts WHERE clientId=1");
 		assertEquals("Ammount consistent before debiting", expected, actual);
-		actual = this.accountDAO.debit(3, 1000000);
+		actual = this.accountDAO.debit(1, 1000000);
 		expected = 1;
 		assertEquals("Account successfully updated", expected, actual);
 		expected = 1000000;
-		actual =  jdbc.queryForInt("SELECT ammount FROM accounts WHERE clientId=3");
+		actual =  jdbc.queryForInt("SELECT ammount FROM accounts WHERE clientId=1");
 		assertEquals("Ammount consistent after debiting", expected, actual);
 	}
 	
 	@Test
 	public void getAccount() {
-		Account expected = new Account(1, 3, 2000000);
-		Account actual = this.accountDAO.getAccount(3);
+		Account expected = new Account(1, 1, 2000000);
+		Account actual = this.accountDAO.getAccount(1);
 		assertTrue("Correct account details retrieved", expected.equals(actual));
 	}
 

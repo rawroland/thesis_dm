@@ -8,6 +8,11 @@
 	
 	<bean id="clientDAO" class="me.rolandawemo.dao.ClientDAO">
 	    <property name="jdbcTemplate" ref="jdbcTemplate"/>
+	    <property name="accountDAO" ref="accountDAO"/>
+	</bean>
+    
+	<bean id="accountDAO" class="me.rolandawemo.dao.AccountDAO">
+	    <property name="jdbcTemplate" ref="jdbcTemplate"/>
 	</bean>
 	
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">

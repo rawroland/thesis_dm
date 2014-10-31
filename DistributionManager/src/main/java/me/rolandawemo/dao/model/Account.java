@@ -66,5 +66,9 @@ public class Account {
 			return false;
 		return true;
 	}
+
+	public boolean canAfford(int cost) {
+		return (cost <= this.ammount);
+	}
 	
 }

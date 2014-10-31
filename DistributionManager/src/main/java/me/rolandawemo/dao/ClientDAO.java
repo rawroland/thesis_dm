@@ -2,8 +2,11 @@ package me.rolandawemo.dao;
 
 import java.util.ArrayList;
 
+import me.rolandawemo.dao.mappers.AccountRowMapper;
 import me.rolandawemo.dao.mappers.ClientRowMapper;
+import me.rolandawemo.dao.model.Account;
 import me.rolandawemo.dao.model.Client;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -16,6 +19,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class ClientDAO implements IClientDAO {
 
 	private JdbcTemplate jdbcTemplate;
+	private AccountDAO accountDAO;
 
 	public ClientDAO(JdbcTemplate jdbc) {
 		this.jdbcTemplate = jdbc;
@@ -83,6 +87,12 @@ public class ClientDAO implements IClientDAO {
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}
+		
+		for(Client client : clients) {
+			if ("consumer".equals(client.getType()) || "company".equals(client.getType())) {
+				client.setAccount(this.accountDAO.getAccount(client.getId()));
+			}
+		}
 		return clients;
 	}
 
@@ -96,23 +106,57 @@ public class ClientDAO implements IClientDAO {
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}
+		
+		if ("consumer".equals(client.getType()) || "company".equals(client.getType())) {
+			client.setAccount(this.accountDAO.getAccount(client.getId()));
+		}
 
 		return client;
 	}
 
 	@Override
 	public ArrayList<Client> getClients(String query) {
-		String sqlQuery = "SELECT Client.id, Client.prefix, Client.firstName, Client.lastName, Client.company, Client.type "
-				+ "FROM clients as Client WHERE Client.firstName LIKE '%' || ? || '%' "
-				+ "OR Client.lastName LIKE '%' || ? || '%' OR Client.company LIKE '%' || ? || '%'";
+		String sqlQuery = "SELECT id, prefix, firstName, lastName, company, type FROM clients WHERE firstName LIKE ? OR lastName LIKE ? OR company LIKE ?";
 		ArrayList<Client> clients = new ArrayList<Client>();
 		try {
 			clients = (ArrayList<Client>) this.jdbcTemplate.query(sqlQuery,
-					new String[] { query, query, query }, new ClientRowMapper());
+					new String[] { "%" + query + "%", "%" + query + "%", "%" + query + "%"}, new ClientRowMapper());
 		} catch (DataAccessException e) {
 			e.printStackTrace();
+		}
+		
+		for(Client client : clients) {
+			if ("consumer".equals(client.getType()) || "company".equals(client.getType())) {
+				client.setAccount(this.accountDAO.getAccount(client.getId()));
+			}
 		}
 		return clients;
 	}
 
+	@Override
+	public ArrayList<Client> getByType(String type) {
+		String query = "SELECT Client.id, Client.prefix, Client.firstName, Client.lastName, Client.company, Client.type FROM clients as Client WHERE Client.type = ?";
+		ArrayList<Client> clients = new ArrayList<Client>();
+		try {
+			clients = (ArrayList<Client>) this.jdbcTemplate.query(query,
+					new String[] { type}, new ClientRowMapper());
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+
+		for(Client client : clients) {
+			if ("consumer".equals(client.getType()) || "company".equals(client.getType())) {
+				client.setAccount(this.accountDAO.getAccount(client.getId()));
+			}
+		}
+		return clients;
+	}
+
+	public AccountDAO getAccountDAO() {
+		return accountDAO;
+	}
+
+	public void setAccountDAO(AccountDAO accountDAO) {
+		this.accountDAO = accountDAO;
+	}
 }

@@ -48,20 +48,38 @@ public class ClientDAOTest {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
+	@DirtiesContext
+	@Test
+	public void addClientUniqueImpossible() {
+		JdbcTemplate jdbc = context.getBean("jdbcTemplate", JdbcTemplate.class);
+		int actual = jdbc.queryForInt("SELECT count(id) from clients where type != 'company'");
+		int expected = 4;
+		assertEquals(
+				"Count of the entries in the db before insert is consistent.",
+				expected, actual);
+		int clientAdded = this.clientDAO.create("Mr", "John", "Nshenwe",
+				"Sosidef", "consumer");
+		assertEquals("Client was not duplicated.", 0, clientAdded);
+		actual = jdbc.queryForInt("SELECT count(id) from clients where type != 'company'");
+		expected = 4;
+		assertEquals(
+				"Count of the entries in the db after insert is consistent.",
+				expected, actual);
+	}
 
 	@DirtiesContext
 	@Test
 	public void addClient() {
 		JdbcTemplate jdbc = context.getBean("jdbcTemplate", JdbcTemplate.class);
-		int actual = jdbc.queryForInt("SELECT count(id) from clients");
+		int actual = jdbc.queryForInt("SELECT count(id) from clients where type != 'company'");
 		int expected = 4;
 		assertEquals(
 				"Count of the entries in the db before insert is consistent.",
 				expected, actual);
-		int cllientAdded = clientDAO.create("Mr", "John", "Doe", "Sosidef",
+		int clientAdded = clientDAO.create("Mr", "John", "Doe", "Sosidef",
 				"consumer");
-		assertEquals("Client was successfully added.", 1, cllientAdded);
-		actual = jdbc.queryForInt("SELECT count(id) from clients");
+		assertEquals("Client was successfully added.", 1, clientAdded);
+		actual = jdbc.queryForInt("SELECT count(id) from clients where type != 'company'");
 		expected = 5;
 		assertEquals(
 				"Count of the entries in the db after insert is consistent.",
@@ -78,13 +96,13 @@ public class ClientDAOTest {
 					@Override
 					public Object mapRow(ResultSet rs, int rowNum)
 							throws SQLException {
-						assertEquals("Jane", rs.getString("firstName"));
+						assertEquals("John", rs.getString("firstName"));
 						return null;
 					}
 
 				});
-		int employeeUpdated = clientDAO.update(2, "Mr", "Johnny", "Doe", "New Company",
-				"consumer");
+		int employeeUpdated = clientDAO.update(2, "Mr", "Johnny", "Doe",
+				"New Company", "consumer");
 		assertEquals("Client updated", 1, employeeUpdated);
 		jdbc.queryForObject("select firstName from clients where id = 2",
 				new RowMapper<Object>() {
@@ -104,7 +122,7 @@ public class ClientDAOTest {
 	public void deleteClient() {
 		JdbcTemplate jdbc = context.getBean("jdbcTemplate", JdbcTemplate.class);
 		int actual = jdbc.queryForInt("SELECT count(id) from clients");
-		int expected = 4;
+		int expected = 5;
 		assertEquals(
 				"Count of the entries in the db before delete is consistent.",
 				expected, actual);
@@ -113,36 +131,63 @@ public class ClientDAOTest {
 		assertEquals("Client successfully deleted.", 1, employeeDeleted);
 
 		actual = jdbc.queryForInt("SELECT count(id) from clients");
-		expected = 3;
+		expected = 4;
 		assertEquals(
 				"Count of the entries in the db after delete is consistent.",
 				expected, actual);
 	}
-	
+
 	@DirtiesContext
-	@Test 
+	@Test
 	/**
 	 * @todo Equals or contains
 	 */
 	public void getAllClients() {
 		ArrayList<Client> clients = this.clientDAO.getAll();
-		assertEquals("Correct number of clients", 4, clients.size());
+		assertEquals("Correct number of clients", 5, clients.size());
 	}
-	
+
 	@DirtiesContext
-	@Test 
+	@Test
 	public void getClientById() {
-		String expected = "Jane";
+		String expected = "John";
 		Client client = this.clientDAO.getById(2);
 		assertEquals("Correct firstname found", expected, client.getFirstName());
 	}
 	
 	@DirtiesContext
 	@Test
+	public void getClientByTypeSupplier() {
+		int expected = 2;
+		int actual = 2;
+		ArrayList<Client> clients = this.clientDAO.getByType("supplier");
+		assertEquals("Correct number of clients retrieved", expected, actual);
+		assertEquals("Correct clients retrieved", "supplier", clients.get(0).getType());
+		assertEquals("Correct clients retrieved", "supplier", clients.get(1).getType());
+	}
+	
+	@DirtiesContext
+	@Test
+	public void getClientByTypeConsumer() {
+		int expected = 2;
+		int actual = 2;
+		ArrayList<Client> clients = this.clientDAO.getByType("consumer");
+		assertEquals("Correct number of clients retrieved", expected, actual);
+		assertEquals("Correct clients retrieved", "consumer", clients.get(0).getType());
+		assertEquals("Correct clients retrieved", "consumer", clients.get(1).getType());
+	}
+
+	@DirtiesContext
+	@Test
 	public void searchClients() {
 		int expected = 2;
 		ArrayList<Client> clients = this.clientDAO.getClients("Joh");
-		assertEquals("Correct number of clients returned", expected, clients.size());
+		assertEquals("Correct number of clients returned", expected,
+				clients.size());
+		expected = 1;
+		clients = this.clientDAO.getClients("Jane");
+		assertEquals("Correct number of clients returned", expected,
+				clients.size());
 	}
 
 }

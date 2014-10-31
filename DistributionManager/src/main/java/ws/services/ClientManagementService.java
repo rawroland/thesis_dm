@@ -4,10 +4,7 @@ import java.util.ArrayList;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import javax.jws.WebResult;
 import javax.jws.WebService;
-import javax.xml.ws.RequestWrapper;
-import javax.xml.ws.ResponseWrapper;
 
 import me.rolandawemo.dao.model.Client;
 
@@ -15,9 +12,6 @@ import me.rolandawemo.dao.model.Client;
 public interface ClientManagementService {
 
 	@WebMethod
-	@WebResult(targetNamespace = "")
-	@RequestWrapper(localName = "addClient", targetNamespace = "http://ws/", className = "ws.services.AddClient")
-	@ResponseWrapper(localName = "addClientResponse", targetNamespace = "http://ws/", className = "ws.services.AddClientResponse")
 	public boolean addClient(
 			@WebParam(name = "prefix", targetNamespace = "") String prefix,
 			@WebParam(name = "firstName", targetNamespace = "") String firstName,
@@ -37,11 +31,7 @@ public interface ClientManagementService {
 	public boolean deleteClient(@WebParam(name = "id") int id);
 
 	@WebMethod
-	public ArrayList<Client> getAllClients();
-
-	@WebMethod
-	public Client searchClientsById(@WebParam(name = "id") int id);
-	
-	@WebMethod 
-	public ArrayList<Client> searchClients(@WebParam(name = "query") String query);
+	public ArrayList<Client> searchClients(
+			@WebParam(name = "query") String query,
+			@WebParam(name = "id") int id, @WebParam(name = "type") String type);
 }

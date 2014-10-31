@@ -38,11 +38,11 @@ public class DMProductManagementTest {
 
 	@Test
 	public void addProduct() {
-		when(this.productDAO.create("MTN Credit Card 10000",100,1,8500))
+		when(this.productDAO.create("MTN Credit Card 10000",1,8500))
 		.thenReturn(1);
 		boolean productAdded = this.dm.addProduct("MTN Credit Card 10000",100,1,8500);
 		assertTrue("Product was successfully added", productAdded);
-		verify(this.productDAO, times(1)).create("MTN Credit Card 10000",100,1,8500);
+		verify(this.productDAO, times(1)).create("MTN Credit Card 10000",1,8500);
 	}
 	
 	@Test

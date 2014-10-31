@@ -36,6 +36,7 @@
 							<port>9001</port>
 						</connector>
 					</connectors>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
 				</configuration>
 			</plugin>
 		</plugins>
