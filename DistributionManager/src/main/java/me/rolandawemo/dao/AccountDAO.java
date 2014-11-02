@@ -26,12 +26,12 @@ public class AccountDAO implements IAccountDAO {
 	}
 
 	@Override
-	public int create(int clientId, int ammount) {
-		String query = "INSERT INTO accounts(clientId, ammount) VALUES(?, ?)";
+	public int create(int clientId, int amount) {
+		String query = "INSERT INTO accounts(clientId, amount) VALUES(?, ?)";
 		int accountAdded = 0;
 		try {
 			accountAdded = this.jdbcTemplate.update(query, new Object[] {
-					clientId, ammount });
+					clientId, amount });
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -39,12 +39,12 @@ public class AccountDAO implements IAccountDAO {
 	}
 
 	@Override
-	public int credit(int clientId, int ammount) {
-		String query = "UPDATE accounts SET ammount=ammount + ? WHERE clientId=?";
+	public int credit(int clientId, int amount) {
+		String query = "UPDATE accounts SET amount=amount + ? WHERE clientId=?";
 		int accountUpdated = 0;
 		try {
 			accountUpdated = this.jdbcTemplate.update(query, new Object[] {
-					ammount, clientId });
+					amount, clientId });
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}
@@ -52,12 +52,12 @@ public class AccountDAO implements IAccountDAO {
 	}
 
 	@Override
-	public int debit(int clientId, int ammount) {
-		String query = "UPDATE accounts SET ammount=ammount - ? WHERE clientId=?";
+	public int debit(int clientId, int amount) {
+		String query = "UPDATE accounts SET amount=amount - ? WHERE clientId=?";
 		int accountUpdated = 0;
 		try {
 			accountUpdated = this.jdbcTemplate.update(query, new Object[] {
-					ammount, clientId });
+					amount, clientId });
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}
@@ -66,7 +66,7 @@ public class AccountDAO implements IAccountDAO {
 
 	@Override
 	public Account getAccount(int clientId) {
-		String query = "SELECT Account.id, Account.clientId, Account.ammount FROM accounts as Account WHERE Account.clientId = ?";
+		String query = "SELECT Account.id, Account.clientId, Account.amount FROM accounts as Account WHERE Account.clientId = ?";
 		Account account = new Account();
 		try {
 			account = this.jdbcTemplate.queryForObject(query,

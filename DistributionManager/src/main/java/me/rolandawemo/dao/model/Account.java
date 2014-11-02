@@ -7,14 +7,14 @@ public class Account {
 
 	private int id; 
 	private int clientId; 
-	private int ammount; 
+	private int amount; 
 	
 	
-	public Account(int id, int clientId, int ammount) {
+	public Account(int id, int clientId, int amount) {
 		super();
 		this.id = id;
 		this.clientId = clientId;
-		this.ammount = ammount;
+		this.amount = amount;
 	}
 	
 	public Account() {
@@ -32,18 +32,18 @@ public class Account {
 	public void setClientId(int clientId) {
 		this.clientId = clientId;
 	}
-	public int getAmmount() {
-		return ammount;
+	public int getAmount() {
+		return amount;
 	}
-	public void setAmmount(int ammount) {
-		this.ammount = ammount;
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ammount;
+		result = prime * result + amount;
 		result = prime * result + clientId;
 		result = prime * result + id;
 		return result;
@@ -58,7 +58,7 @@ public class Account {
 		if (getClass() != obj.getClass())
 			return false;
 		Account other = (Account) obj;
-		if (ammount != other.ammount)
+		if (amount != other.amount)
 			return false;
 		if (clientId != other.clientId)
 			return false;
@@ -67,8 +67,8 @@ public class Account {
 		return true;
 	}
 
-	public boolean canAfford(int cost) {
-		return (cost <= this.ammount);
+	public boolean canAfford(int cost, int payment) {
+		return (cost <= (this.amount + payment));
 	}
 	
 }

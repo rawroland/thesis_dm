@@ -1,7 +1,7 @@
 package me.rolandawemo.dao;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 
 import me.rolandawemo.dao.mappers.AccountRowMapper;
 import me.rolandawemo.dao.mappers.ProductRowMapper;
@@ -38,7 +38,8 @@ public class TransactionDAO implements ITransactionDAO {
 
 	@Override
 	public int create(int accountId, int quantity, int productId, String type,
-			int payment) {
+			int payment, Date date) {
+
 		Transaction transaction = new Transaction();
 		String prdtQuery = "SELECT * FROM products WHERE id=?";
 		Product product = this.jdbcTemplate.queryForObject(prdtQuery,
@@ -51,11 +52,26 @@ public class TransactionDAO implements ITransactionDAO {
 		if (!transaction.feasible(quantity, payment, type)) {
 			return 0;
 		}
+
 		int cost = product.calculateTotalPrice(quantity);
-		//Debit account and credit if payment was made
-		//Reduce quantity of product
+		String creditedQuery = "UPDATE accounts SET amount = amount + ? - ? WHERE id = ?";
+		int transactionAmount = product.calculateTotalPrice(quantity);
+		this.jdbcTemplate.update(creditedQuery, new Object[] { payment,
+				transactionAmount, accountId });
+
+		int newQuantity = product.getQuantity();
+		if ("purchase".equals(type)) {
+			newQuantity = product.getQuantity() + quantity;
+		} else {
+			newQuantity = product.getQuantity() - quantity;
+		}
+		String quantityReducedQuery = "UPDATE products SET quantity = ? WHERE id = ?";
+		this.jdbcTemplate.update(quantityReducedQuery, new Object[] {
+				newQuantity, productId });
 		String insertTransaction = "INSERT INTO transactions(accountId,quantity,productId,cost,date,type) VALUES(?,?,?,?,?,?)";
-		String dateStr = new SimpleDateFormat("YYYY-MM-dd").format(new Date());
-		return this.jdbcTemplate.update(insertTransaction, new Object[] {accountId,quantity,productId,cost,dateStr,type});
+
+		String dateStr = new SimpleDateFormat("YYYY-MM-dd").format(date);
+		return this.jdbcTemplate.update(insertTransaction, new Object[] {
+				accountId, quantity, productId, cost, dateStr, type });
 	}
 }

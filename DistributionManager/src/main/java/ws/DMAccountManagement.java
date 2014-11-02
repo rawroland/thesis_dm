@@ -26,8 +26,8 @@ public class DMAccountManagement implements AccountManagementService {
 	}
 
 	@Override
-	public boolean creditAccount(int clientId, int ammount) {
-		int accountCredited = this.accountDAO.credit(clientId, ammount);
+	public boolean creditAccount(int clientId, int amount) {
+		int accountCredited = this.accountDAO.credit(clientId, amount);
 		if (1 == accountCredited) {
 			return true;
 		} else {
@@ -36,8 +36,8 @@ public class DMAccountManagement implements AccountManagementService {
 	}
 
 	@Override
-	public boolean debitAccount(int clientId, int ammount) {
-		int accountDebited = this.accountDAO.debit(clientId, ammount);
+	public boolean debitAccount(int clientId, int amount) {
+		int accountDebited = this.accountDAO.debit(clientId, amount);
 		if (1 == accountDebited) {
 			return true;
 		} else {
@@ -47,7 +47,7 @@ public class DMAccountManagement implements AccountManagementService {
 
 	@Override
 	public int checkAccount(int clientId) {
-		return this.accountDAO.getAccount(clientId).getAmmount();
+		return this.accountDAO.getAccount(clientId).getAmount();
 	}
 
 }

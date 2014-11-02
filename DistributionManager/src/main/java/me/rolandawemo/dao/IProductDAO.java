@@ -24,6 +24,12 @@ public interface IProductDAO {
 	ArrayList<Product> getProducts(String name);
 	
 	/**
+	 * Get a list of all products
+	 * @return A list of products
+	 */
+	ArrayList<Product> getAllProducts();
+	
+	/**
 	 * Get a product by its id
 	 * @param int id Product id
 	 * @return Product a Product

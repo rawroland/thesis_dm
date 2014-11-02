@@ -19,7 +19,7 @@ public class DMProductManagement implements ProductManagementService {
 	}
 	
 	@Override
-	public boolean addProduct(String name, int quantity, int clientId, int price) {
+	public boolean addProduct(String name, int clientId, int price) {
 		int productAdded = this.productDAO.create(name, clientId, price); 
 		if (1 == productAdded) {
 			return true;
@@ -30,6 +30,9 @@ public class DMProductManagement implements ProductManagementService {
 
 	@Override
 	public ArrayList<Product> searchProducts(String name) {
+		if (null == name) {
+			return this.productDAO.getAllProducts();
+		}
 		return this.productDAO.getProducts(name);
 	}
 

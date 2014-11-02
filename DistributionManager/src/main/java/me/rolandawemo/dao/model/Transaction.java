@@ -1,8 +1,7 @@
 package me.rolandawemo.dao.model;
 
 
-import java.util.Date;
-
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="Transaction")
@@ -13,13 +12,13 @@ public class Transaction {
 	private int quantity;
 	private int productId;
 	private int cost;
-	private Date date;
+	private String date;
 	private String type;
 	private Account account;
 	private Product product;
 	
 	public Transaction(int id, int accountId, int quantity, int productId,
-			int cost, Date date, String type, Account account, Product product) {
+			int cost, String date, String type, Account account, Product product) {
 		super();
 		this.id = id;
 		this.accountId = accountId;
@@ -76,11 +75,11 @@ public class Transaction {
 		this.cost = cost;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -92,6 +91,7 @@ public class Transaction {
 		this.type = type;
 	}
 	
+	@XmlElement(name="Account")
 	public Account getAccount() {
 		return account;
 	}
@@ -100,6 +100,7 @@ public class Transaction {
 		this.account = account;
 	}
 
+	@XmlElement(name="Product")
 	public Product getProduct() {
 		return product;
 	}
@@ -121,7 +122,7 @@ public class Transaction {
 			productIsAvailable = this.product.available(quantity);
 		}
 		int totalPrice = this.product.calculateTotalPrice(quantity);
-		boolean accountCanAfford = this.account.canAfford(totalPrice - payment);
+		boolean accountCanAfford = this.account.canAfford(totalPrice, payment);
 		return productIsAvailable && accountCanAfford;
 	}
 }

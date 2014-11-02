@@ -22,6 +22,7 @@
     
 	<bean id="productDAO" class="me.rolandawemo.dao.ProductDAO">
 	    <property name="jdbcTemplate" ref="jdbcTemplate"/>
+	    <property name="clientDAO" ref="clientDAO"/>
 	</bean>
     
 	<bean id="transactionDAO" class="me.rolandawemo.dao.TransactionDAO">

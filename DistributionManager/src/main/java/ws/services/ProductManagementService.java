@@ -13,7 +13,6 @@ public interface ProductManagementService {
 
 	@WebMethod
 	public boolean addProduct(@WebParam(name = "name") String name,
-			@WebParam(name = "quantity") int quantity,
 			@WebParam(name = "clientId") int clientId,
 			@WebParam(name = "price") int price);
 

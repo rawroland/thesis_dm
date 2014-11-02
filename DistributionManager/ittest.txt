@@ -1,0 +1,245 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for DistributionManager:DM:war:1.0
+[WARNING] 'build.plugins.plugin.version' for org.mortbay.jetty:jetty-maven-plugin is missing. @ line 42, column 12
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ line 21, column 12
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building DistributionManager 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ DM ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ DM ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ DM ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 18 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ DM ---
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 1 source file to C:\thesis_dm\DistributionManager\target\test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ DM ---
+[INFO] Surefire report directory: C:\thesis_dm\DistributionManager\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running me.rolandawemo.dao.AccountDAOTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.602 sec
+Running me.rolandawemo.dao.ClientDAOTest
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.921 sec
+Running me.rolandawemo.dao.EmployeeDAOTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.204 sec
+Running me.rolandawemo.dao.model.AccountTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.034 sec
+Running me.rolandawemo.dao.model.ProductTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.047 sec
+Running me.rolandawemo.dao.model.TransactionTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 sec
+Running me.rolandawemo.dao.ProductDAOTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.411 sec
+Running me.rolandawemo.dao.TransactionDAOTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.975 sec
+Running ws.DMAccountManagementTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.338 sec
+Running ws.DMAuthenticationTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 sec
+Running ws.DMClientManagementTest
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.073 sec
+Running ws.DMEmployeeManagementTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.034 sec
+Running ws.DMProductManagementTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.026 sec
+Running ws.DMTransactionManagementTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.025 sec
+
+Results :
+
+Tests run: 68, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-war-plugin:2.2:war (default-war) @ DM ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [DM] in [C:\thesis_dm\DistributionManager\target\DistributionManager]
+[INFO] Processing war project
+[INFO] Copying webapp resources [C:\thesis_dm\DistributionManager\src\main\webapp]
+[INFO] Webapp assembled in [643 msecs]
+[INFO] Building war: C:\thesis_dm\DistributionManager\target\DistributionManager.war
+[INFO] WEB-INF\web.xml already added, skipping
+[INFO] 
+[INFO] --- jetty-maven-plugin:8.1.16.v20140903:stop (start-jetty) @ DM ---
+[INFO] Jetty not running!
+[INFO] 
+[INFO] >>> jetty-maven-plugin:8.1.16.v20140903:run (start-jetty) > test-compile @ DM >>>
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ DM ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:compile (default-compile) @ DM ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ DM ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 18 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.5.1:testCompile (default-testCompile) @ DM ---
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 1 source file to C:\thesis_dm\DistributionManager\target\test-classes
+[INFO] 
+[INFO] <<< jetty-maven-plugin:8.1.16.v20140903:run (start-jetty) < test-compile @ DM <<<
+[INFO] 
+[INFO] --- jetty-maven-plugin:8.1.16.v20140903:run (start-jetty) @ DM ---
+[INFO] Configuring Jetty for project: DistributionManager
+[INFO] webAppSourceDirectory not set. Defaulting to C:\thesis_dm\DistributionManager\src\main\webapp
+[INFO] Reload Mechanic: automatic
+[INFO] Classes = C:\thesis_dm\DistributionManager\target\classes
+[INFO] Context path = /
+[INFO] Tmp directory = C:\thesis_dm\DistributionManager\target\tmp
+[INFO] Web defaults = org/eclipse/jetty/webapp/webdefault.xml
+[INFO] Web overrides =  none
+[INFO] web.xml file = src\main\webapp\WEB-INF\test-web.xml
+[INFO] Webapp directory = C:\thesis_dm\DistributionManager\src\main\webapp
+[INFO] Started Jetty Server
+[INFO] 
+[INFO] --- maven-failsafe-plugin:2.12:integration-test (default) @ DM ---
+[INFO] Failsafe report directory: C:\thesis_dm\DistributionManager\target\failsafe-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running integration.ClientServiceIT
+Nov 02, 2014 10:55:35 PM org.springframework.test.context.TestContextManager retrieveTestExecutionListeners
+INFO: @TestExecutionListeners is not present for class [class integration.ClientServiceIT]: using defaults.
+Nov 02, 2014 10:55:35 PM org.springframework.context.support.AbstractApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.GenericApplicationContext@15b57613: startup date [Sun Nov 02 22:55:35 CET 2014]; root of context hierarchy
+Nov 02, 2014 10:55:36 PM org.springframework.beans.factory.support.DefaultListableBeanFactory preInstantiateSingletons
+INFO: Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@2f81dd44: defining beans [org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor]; root of factory hierarchy
+Nov 02, 2014 10:55:37 PM org.apache.cxf.service.factory.ReflectionServiceFactoryBean buildServiceFromWSDL
+INFO: Creating Service {http://ws/}DMClientManagementService from WSDL: http://localhost:9001/dm/clients?wsdl
+Nov 02, 2014 10:55:38 PM org.apache.cxf.service.factory.ReflectionServiceFactoryBean buildServiceFromWSDL
+INFO: Creating Service {http://ws/}DMClientManagementService from WSDL: http://localhost:9001/dm/clients?wsdl
+Nov 02, 2014 10:55:38 PM org.springframework.context.support.AbstractApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3c207486: startup date [Sun Nov 02 22:55:38 CET 2014]; root of context hierarchy
+Nov 02, 2014 10:55:38 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+INFO: Loading XML bean definitions from class path resource [spring-test.xml]
+Nov 02, 2014 10:55:38 PM org.springframework.beans.factory.support.DefaultListableBeanFactory preInstantiateSingletons
+INFO: Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@3a5b596: defining beans [jdbcTemplate,employeeDAO,clientDAO,accountDAO,productDAO,transactionDAO,dataSource,distributionManagerAuthentication,distributionManagerEmployeeManagement,distributionManagerClientManagement,distributionManagerAccountManagement,distributionManagerProductManagement,distributionManagerTransactionManagement,authenticate,employeeManagement,clientManagement,accountManagement,productManagement,transactionManagement]; root of factory hierarchy
+Nov 02, 2014 10:55:38 PM org.springframework.jdbc.datasource.DriverManagerDataSource setDriverClassName
+INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+Nov 02, 2014 10:55:39 PM org.apache.cxf.service.factory.ReflectionServiceFactoryBean buildServiceFromClass
+INFO: Creating Service {http://ws/}authentication from class ws.services.AuthenticationService
+Nov 02, 2014 10:55:39 PM org.apache.cxf.endpoint.ServerImpl initDestination
+INFO: Setting the server's publish address to be /authenticate
+Nov 02, 2014 10:55:39 PM org.apache.cxf.service.factory.ReflectionServiceFactoryBean buildServiceFromClass
+INFO: Creating Service {http://ws/}DMEmployeeManagementService from class ws.services.EmployeeManagementService
+Nov 02, 2014 10:55:39 PM org.apache.cxf.endpoint.ServerImpl initDestination
+INFO: Setting the server's publish address to be /employees
+Nov 02, 2014 10:55:39 PM org.apache.cxf.service.factory.ReflectionServiceFactoryBean buildServiceFromClass
+INFO: Creating Service {http://ws/}DMClientManagementService from class ws.services.ClientManagementService
+Nov 02, 2014 10:55:39 PM org.apache.cxf.endpoint.ServerImpl initDestination
+INFO: Setting the server's publish address to be /clients
+Nov 02, 2014 10:55:39 PM org.apache.cxf.service.factory.ReflectionServiceFactoryBean buildServiceFromClass
+INFO: Creating Service {http://ws/}DMAccountManagementService from class ws.services.AccountManagementService
+Nov 02, 2014 10:55:39 PM org.apache.cxf.endpoint.ServerImpl initDestination
+INFO: Setting the server's publish address to be /accounts
+Nov 02, 2014 10:55:39 PM org.apache.cxf.service.factory.ReflectionServiceFactoryBean buildServiceFromClass
+INFO: Creating Service {http://ws/}DMProductManagementService from class ws.services.ProductManagementService
+Nov 02, 2014 10:55:39 PM org.apache.cxf.endpoint.ServerImpl initDestination
+INFO: Setting the server's publish address to be /products
+Nov 02, 2014 10:55:39 PM org.apache.cxf.service.factory.ReflectionServiceFactoryBean buildServiceFromClass
+INFO: Creating Service {http://ws/}DMTransactionManagementService from class ws.services.TransactionManagementService
+Nov 02, 2014 10:55:39 PM org.apache.cxf.endpoint.ServerImpl initDestination
+INFO: Setting the server's publish address to be /transactions
+Nov 02, 2014 10:55:40 PM org.springframework.context.support.AbstractApplicationContext doClose
+INFO: Closing org.springframework.context.support.ClassPathXmlApplicationContext@3c207486: startup date [Sun Nov 02 22:55:38 CET 2014]; root of context hierarchy
+Nov 02, 2014 10:55:40 PM org.springframework.beans.factory.support.DefaultSingletonBeanRegistry destroySingletons
+INFO: Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@3a5b596: defining beans [jdbcTemplate,employeeDAO,clientDAO,accountDAO,productDAO,transactionDAO,dataSource,distributionManagerAuthentication,distributionManagerEmployeeManagement,distributionManagerClientManagement,distributionManagerAccountManagement,distributionManagerProductManagement,distributionManagerTransactionManagement,authenticate,employeeManagement,clientManagement,accountManagement,productManagement,transactionManagement]; root of factory hierarchy
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 4.881 sec <<< FAILURE!
+Running integration.ProductServiceIT
+Nov 02, 2014 10:55:40 PM org.springframework.test.context.TestContextManager retrieveTestExecutionListeners
+INFO: @TestExecutionListeners is not present for class [class integration.ProductServiceIT]: using defaults.
+Nov 02, 2014 10:55:40 PM org.apache.cxf.service.factory.ReflectionServiceFactoryBean buildServiceFromWSDL
+INFO: Creating Service {http://ws/}DMProductManagementService from WSDL: http://localhost:9001/dm/products?wsdl
+Nov 02, 2014 10:55:40 PM org.apache.cxf.service.factory.ReflectionServiceFactoryBean buildServiceFromWSDL
+INFO: Creating Service {http://ws/}DMProductManagementService from WSDL: http://localhost:9001/dm/products?wsdl
+Nov 02, 2014 10:55:40 PM org.springframework.context.support.AbstractApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@77e648f: startup date [Sun Nov 02 22:55:40 CET 2014]; root of context hierarchy
+Nov 02, 2014 10:55:40 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+INFO: Loading XML bean definitions from class path resource [spring-test.xml]
+Nov 02, 2014 10:55:40 PM org.springframework.beans.factory.support.DefaultListableBeanFactory preInstantiateSingletons
+INFO: Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@3ca1d6b0: defining beans [jdbcTemplate,employeeDAO,clientDAO,accountDAO,productDAO,transactionDAO,dataSource,distributionManagerAuthentication,distributionManagerEmployeeManagement,distributionManagerClientManagement,distributionManagerAccountManagement,distributionManagerProductManagement,distributionManagerTransactionManagement,authenticate,employeeManagement,clientManagement,accountManagement,productManagement,transactionManagement]; root of factory hierarchy
+Nov 02, 2014 10:55:40 PM org.springframework.jdbc.datasource.DriverManagerDataSource setDriverClassName
+INFO: Loaded JDBC driver: com.mysql.jdbc.Driver
+Nov 02, 2014 10:55:40 PM org.apache.cxf.service.factory.ReflectionServiceFactoryBean buildServiceFromClass
+INFO: Creating Service {http://ws/}authentication from class ws.services.AuthenticationService
+Nov 02, 2014 10:55:40 PM org.apache.cxf.endpoint.ServerImpl initDestination
+INFO: Setting the server's publish address to be /authenticate
+Nov 02, 2014 10:55:40 PM org.apache.cxf.service.factory.ReflectionServiceFactoryBean buildServiceFromClass
+INFO: Creating Service {http://ws/}DMEmployeeManagementService from class ws.services.EmployeeManagementService
+Nov 02, 2014 10:55:40 PM org.apache.cxf.endpoint.ServerImpl initDestination
+INFO: Setting the server's publish address to be /employees
+Nov 02, 2014 10:55:40 PM org.apache.cxf.service.factory.ReflectionServiceFactoryBean buildServiceFromClass
+INFO: Creating Service {http://ws/}DMClientManagementService from class ws.services.ClientManagementService
+Nov 02, 2014 10:55:40 PM org.apache.cxf.endpoint.ServerImpl initDestination
+INFO: Setting the server's publish address to be /clients
+Nov 02, 2014 10:55:40 PM org.apache.cxf.service.factory.ReflectionServiceFactoryBean buildServiceFromClass
+INFO: Creating Service {http://ws/}DMAccountManagementService from class ws.services.AccountManagementService
+Nov 02, 2014 10:55:40 PM org.apache.cxf.endpoint.ServerImpl initDestination
+INFO: Setting the server's publish address to be /accounts
+Nov 02, 2014 10:55:40 PM org.apache.cxf.service.factory.ReflectionServiceFactoryBean buildServiceFromClass
+INFO: Creating Service {http://ws/}DMProductManagementService from class ws.services.ProductManagementService
+Nov 02, 2014 10:55:40 PM org.apache.cxf.endpoint.ServerImpl initDestination
+INFO: Setting the server's publish address to be /products
+Nov 02, 2014 10:55:40 PM org.apache.cxf.service.factory.ReflectionServiceFactoryBean buildServiceFromClass
+INFO: Creating Service {http://ws/}DMTransactionManagementService from class ws.services.TransactionManagementService
+Nov 02, 2014 10:55:40 PM org.apache.cxf.endpoint.ServerImpl initDestination
+INFO: Setting the server's publish address to be /transactions
+Nov 02, 2014 10:55:40 PM org.springframework.context.support.AbstractApplicationContext doClose
+INFO: Closing org.springframework.context.support.ClassPathXmlApplicationContext@77e648f: startup date [Sun Nov 02 22:55:40 CET 2014]; root of context hierarchy
+Nov 02, 2014 10:55:40 PM org.springframework.beans.factory.support.DefaultSingletonBeanRegistry destroySingletons
+INFO: Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@3ca1d6b0: defining beans [jdbcTemplate,employeeDAO,clientDAO,accountDAO,productDAO,transactionDAO,dataSource,distributionManagerAuthentication,distributionManagerEmployeeManagement,distributionManagerClientManagement,distributionManagerAccountManagement,distributionManagerProductManagement,distributionManagerTransactionManagement,authenticate,employeeManagement,clientManagement,accountManagement,productManagement,transactionManagement]; root of factory hierarchy
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.606 sec <<< FAILURE!
+
+Results :
+
+Tests in error: 
+  SearchAllCllientsService(integration.ClientServiceIT)
+  SearchAllProductsService(integration.ProductServiceIT)
+
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0
+
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] 
+[INFO] --- jetty-maven-plugin:8.1.16.v20140903:stop (stop-jetty) @ DM ---
+[INFO] 
+[INFO] --- maven-failsafe-plugin:2.12:verify (default) @ DM ---
+[INFO] Failsafe report directory: C:\thesis_dm\DistributionManager\target\failsafe-reports
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 47.715 s
+[INFO] Finished at: 2014-11-02T22:55:41+01:00
+[INFO] Final Memory: 33M/201M
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-failsafe-plugin:2.12:verify (default) on project DM: There are test failures.
+[ERROR] 
+[ERROR] Please refer to C:\thesis_dm\DistributionManager\target\failsafe-reports for the individual test results.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

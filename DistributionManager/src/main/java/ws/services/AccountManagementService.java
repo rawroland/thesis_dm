@@ -11,10 +11,10 @@ public interface AccountManagementService {
 	public boolean addAccount(@WebParam(name="clientId")int clientId);
 	
 	@WebMethod
-	public boolean creditAccount(@WebParam(name="clientId")int clientId, @WebParam(name="ammount")int ammount);
+	public boolean creditAccount(@WebParam(name="clientId")int clientId, @WebParam(name="amount")int amount);
 	
 	@WebMethod
-	public boolean debitAccount(@WebParam(name="clientId")int clientId, @WebParam(name="ammount")int ammount);
+	public boolean debitAccount(@WebParam(name="clientId")int clientId, @WebParam(name="amount")int amount);
 
 	@WebMethod
 	public int checkAccount(@WebParam(name="clientId")int clientId);

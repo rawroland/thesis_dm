@@ -4,5 +4,6 @@ CREATE TABLE IF NOT EXISTS products (
   quantity int,
   clientId int,
   price int,
-  constraint product_pk PRIMARY KEY (id)
+  constraint product_pk PRIMARY KEY (id),
+  constraint unique_product UNIQUE (name, clientId)
 );

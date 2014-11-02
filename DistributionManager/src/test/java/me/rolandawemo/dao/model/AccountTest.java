@@ -29,13 +29,19 @@ public class AccountTest {
 
 	@Test
 	public void accountCanAfford() {
-		boolean canAfford = this.account.canAfford(50000);
+		boolean canAfford = this.account.canAfford(50000, 0);
+		assertTrue("Account can afford transaction", canAfford);
+	}
+	
+	@Test
+	public void accountCanAffordWithPayment() {
+		boolean canAfford = this.account.canAfford(50000, 50000);
 		assertTrue("Account can afford transaction", canAfford);
 	}
 	
 	@Test
 	public void accountCannotAfford() {
-		boolean cannotAfford = this.account.canAfford(150000);
+		boolean cannotAfford = this.account.canAfford(150000, 0);
 		assertFalse("Account can afford transaction", cannotAfford);
 	}
 }

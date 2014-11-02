@@ -53,28 +53,28 @@ public class AccountDAOTest {
 	public void creditAccount() {
 		JdbcTemplate jdbc = context.getBean("jdbcTemplate", JdbcTemplate.class);
 		int expected = 2000000;
-		int actual =  jdbc.queryForInt("SELECT ammount FROM accounts WHERE clientId=1");
-		assertEquals("Ammount consistent before crediting", expected, actual);
+		int actual =  jdbc.queryForInt("SELECT amount FROM accounts WHERE clientId=1");
+		assertEquals("Amount consistent before crediting", expected, actual);
 		actual = this.accountDAO.credit(1, 1000000);
 		expected = 1;
 		assertEquals("Account successfully updated", expected, actual);
 		expected = 3000000;
-		actual =  jdbc.queryForInt("SELECT ammount FROM accounts WHERE clientId=1");
-		assertEquals("Ammount consistent after crediting", expected, actual);
+		actual =  jdbc.queryForInt("SELECT amount FROM accounts WHERE clientId=1");
+		assertEquals("Amount consistent after crediting", expected, actual);
 	}
 	
 	@Test
 	public void debitAccount() {
 		JdbcTemplate jdbc = context.getBean("jdbcTemplate", JdbcTemplate.class);
 		int expected = 2000000;
-		int actual =  jdbc.queryForInt("SELECT ammount FROM accounts WHERE clientId=1");
-		assertEquals("Ammount consistent before debiting", expected, actual);
+		int actual =  jdbc.queryForInt("SELECT amount FROM accounts WHERE clientId=1");
+		assertEquals("Amount consistent before debiting", expected, actual);
 		actual = this.accountDAO.debit(1, 1000000);
 		expected = 1;
 		assertEquals("Account successfully updated", expected, actual);
 		expected = 1000000;
-		actual =  jdbc.queryForInt("SELECT ammount FROM accounts WHERE clientId=1");
-		assertEquals("Ammount consistent after debiting", expected, actual);
+		actual =  jdbc.queryForInt("SELECT amount FROM accounts WHERE clientId=1");
+		assertEquals("Amount consistent after debiting", expected, actual);
 	}
 	
 	@Test

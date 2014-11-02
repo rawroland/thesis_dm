@@ -40,7 +40,7 @@ public class DMProductManagementTest {
 	public void addProduct() {
 		when(this.productDAO.create("MTN Credit Card 10000",1,8500))
 		.thenReturn(1);
-		boolean productAdded = this.dm.addProduct("MTN Credit Card 10000",100,1,8500);
+		boolean productAdded = this.dm.addProduct("MTN Credit Card 10000",1,8500);
 		assertTrue("Product was successfully added", productAdded);
 		verify(this.productDAO, times(1)).create("MTN Credit Card 10000",1,8500);
 	}
@@ -56,6 +56,23 @@ public class DMProductManagementTest {
 		ArrayList<Product> actual = this.dm.searchProducts("Sim");
 		assertEquals("Correct products retrieved", expected, actual);
 		verify(this.productDAO, times(1)).getProducts("Sim");
+	}
+	
+	@Test
+	public void searchAllProducts() {
+		Product productA = new Product(1, 1, 5000, 200, "MTN Sim cards");
+		Product productB = new Product(2, 2, 5000, 200, "Orange Sim cards");
+		Product productC = new Product(3, 2, 2000, 100, "MTN 2500 Credit");
+		Product productD = new Product(4, 3, 2000, 100, "Orange 2500 Credit");
+		ArrayList<Product> expected = new ArrayList<Product>();
+		expected.add(productA);
+		expected.add(productB);
+		expected.add(productC);
+		expected.add(productD);
+		when(this.productDAO.getAllProducts()).thenReturn(expected);
+		ArrayList<Product> actual = this.dm.searchProducts(null);
+		assertEquals("Correct products retrieved", expected, actual);
+		verify(this.productDAO, times(1)).getAllProducts();
 	}
 	
 	@Test 

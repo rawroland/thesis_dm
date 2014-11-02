@@ -12,7 +12,7 @@ public class AccountRowMapper implements RowMapper<Account>{
 		try {
 			account.setId(rs.getInt("id"));
 			account.setClientId(rs.getInt("clientId"));
-			account.setAmmount(rs.getInt("ammount"));
+			account.setAmount(rs.getInt("amount"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

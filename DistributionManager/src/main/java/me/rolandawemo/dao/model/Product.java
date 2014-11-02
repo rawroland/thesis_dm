@@ -1,5 +1,6 @@
 package me.rolandawemo.dao.model;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="Product")
@@ -10,6 +11,7 @@ public class Product {
 	private int price;
 	private int quantity;
 	private String name;
+	private Client client;
 	
 	public Product(int id, int clientId, int price, int quantity, String name) {
 		super();
@@ -68,6 +70,7 @@ public class Product {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((client == null) ? 0 : client.hashCode());
 		result = prime * result + clientId;
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -85,6 +88,11 @@ public class Product {
 		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
+		if (client == null) {
+			if (other.client != null)
+				return false;
+		} else if (!client.equals(other.client))
+			return false;
 		if (clientId != other.clientId)
 			return false;
 		if (id != other.id)
@@ -107,6 +115,16 @@ public class Product {
 
 	public int calculateTotalPrice(int quantity) {
 		return this.price * quantity;
+	}
+
+
+	@XmlElement(name = "Client")
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 	
 	

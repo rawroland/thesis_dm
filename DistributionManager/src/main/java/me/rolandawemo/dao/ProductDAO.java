@@ -11,6 +11,7 @@ import me.rolandawemo.dao.model.Product;
 public class ProductDAO implements IProductDAO {
 
 	private JdbcTemplate jdbcTemplate;
+	private ClientDAO clientDAO;
 
 	public ProductDAO(JdbcTemplate jdbcTemplate) {
 		super();
@@ -44,13 +45,33 @@ public class ProductDAO implements IProductDAO {
 
 	@Override
 	public ArrayList<Product> getProducts(String name) {
-		String sqlQuery = "SELECT id, name, quantity, clientId, price FROM products WHERE name LIKE '%' || ? || '%'";
+		String sqlQuery = "SELECT id, name, quantity, clientId, price FROM products WHERE name LIKE ?";
 		ArrayList<Product> products = new ArrayList<Product>();
 		try {
 			products = (ArrayList<Product>) this.jdbcTemplate.query(sqlQuery,
-					new String[] { name }, new ProductRowMapper());
+					new String[] { "%"+name+"%" }, new ProductRowMapper());
 		} catch (DataAccessException e) {
 			e.printStackTrace();
+		}
+		
+		for(Product product:products) {
+			product.setClient(this.clientDAO.getById(product.getClientId()));
+		}
+		return products;
+	}
+	
+	@Override
+	public ArrayList<Product> getAllProducts() {
+		String sqlQuery = "SELECT id, name, quantity, clientId, price FROM products WHERE 1";
+		ArrayList<Product> products = new ArrayList<Product>();
+		try {
+			products = (ArrayList<Product>) this.jdbcTemplate.query(sqlQuery, new ProductRowMapper());
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		
+		for(Product product:products) {
+			product.setClient(this.clientDAO.getById(product.getClientId()));
 		}
 		return products;
 	}
@@ -64,7 +85,16 @@ public class ProductDAO implements IProductDAO {
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}
+		product.setClient(this.clientDAO.getById(product.getClientId()));
 		return product;
+	}
+
+	public ClientDAO getClientDAO() {
+		return clientDAO;
+	}
+
+	public void setClientDAO(ClientDAO clientDAO) {
+		this.clientDAO = clientDAO;
 	}
 
 }
