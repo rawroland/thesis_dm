@@ -28,7 +28,7 @@ USE `thesis_dm_test`;
 -- Tabellenstruktur für Tabelle `accounts`
 --
 
-DROP TABLE IF EXISTS `accounts`;
+DROP TABLE `accounts`;
 CREATE TABLE IF NOT EXISTS `accounts` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `clientId` int(5) NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 -- Tabellenstruktur für Tabelle `clients`
 --
 
-DROP TABLE IF EXISTS `clients`;
+DROP TABLE `clients`;
 CREATE TABLE IF NOT EXISTS `clients` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `prefix` enum('','Mr','Mrs') NOT NULL DEFAULT '',
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `clients` (
 -- Tabellenstruktur für Tabelle `employees`
 --
 
-DROP TABLE IF EXISTS `employees`;
+DROP TABLE `employees`;
 CREATE TABLE IF NOT EXISTS `employees` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `givenname` varchar(100) NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
 -- Tabellenstruktur für Tabelle `products`
 --
 
-DROP TABLE IF EXISTS `products`;
+DROP TABLE `products`;
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `clientId` int(5) NOT NULL,
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `products` (
 -- Tabellenstruktur für Tabelle `transactions`
 --
 
-DROP TABLE IF EXISTS `transactions`;
+DROP TABLE `transactions`;
 CREATE TABLE IF NOT EXISTS `transactions` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `accountId` int(5) NOT NULL,

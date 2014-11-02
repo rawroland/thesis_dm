@@ -84,7 +84,7 @@ public class ClientServiceIT {
 	
 	@Test
 	public void AddClientUniqueService() {
-		assertTrue(this.client.addClient("Mr", "Roland", "Awemo", "MTN",
+		assertFalse(this.client.addClient("Mr", "Roland", "Awemo", "MTN",
 				"supplier"));
 	}
 
