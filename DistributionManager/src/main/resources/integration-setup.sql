@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `clients` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `firstName` (`firstName`,`lastName`,`company`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+TRUNCATE TABLE `clients`;
 
 -- --------------------------------------------------------
 

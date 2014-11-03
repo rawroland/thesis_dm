@@ -17,6 +17,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -76,12 +77,14 @@ public class ClientServiceIT {
 		assertEquals(2, actual.size());
 	}
 	
+	@DirtiesContext
 	@Test
 	public void AddClientService() {
 		assertTrue(this.client.addClient("Mr", "Roland", "Awemo", "MTN",
 				"supplier"));
 	}
 	
+	@DirtiesContext
 	@Test
 	public void AddClientUniqueService() {
 		assertFalse(this.client.addClient("Mr", "Roland", "Awemo", "MTN",

@@ -48,7 +48,6 @@
 		<property name="password" value="rawroro"/>
 	</bean>
 	
-	<!-- Initialize DS -->
 	<bean id="distributionManagerAuthentication" class="ws.DMAuthentication" />
 	<bean id="distributionManagerEmployeeManagement" class="ws.DMEmployeeManagement">
 	    <property name="employeeDAO" ref="employeeDAO"/>
