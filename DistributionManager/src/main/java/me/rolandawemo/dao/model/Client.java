@@ -1,7 +1,6 @@
 package me.rolandawemo.dao.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
-
 import javax.xml.bind.annotation.XmlElement;
 
 @XmlRootElement(name="Client")
@@ -79,6 +78,7 @@ public class Client {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((account == null) ? 0 : account.hashCode());
 		result = prime * result + ((company == null) ? 0 : company.hashCode());
 		result = prime * result
 				+ ((firstName == null) ? 0 : firstName.hashCode());
@@ -99,6 +99,11 @@ public class Client {
 		if (getClass() != obj.getClass())
 			return false;
 		Client other = (Client) obj;
+		if (account == null) {
+			if (other.account != null)
+				return false;
+		} else if (!account.equals(other.account))
+			return false;
 		if (company == null) {
 			if (other.company != null)
 				return false;

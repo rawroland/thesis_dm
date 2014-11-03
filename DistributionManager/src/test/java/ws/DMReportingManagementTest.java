@@ -2,10 +2,9 @@ package ws;
 
 import static org.junit.Assert.*;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
+import me.rolandawemo.dao.ReportingGroupDAO;
 import me.rolandawemo.dao.TransactionDAO;
 
 import org.junit.After;
@@ -19,17 +18,21 @@ import static org.mockito.Mockito.*;
 
 public class DMReportingManagementTest {
 
-	private DMTransactionManagement dm;
+	private DMReportingManagement dm;
 	@Mock
 	private TransactionDAO transactionDAO;
+	@Mock
+	private ReportingGroupDAO reportingGroupDAO;
 	private JdbcTemplate jdbc;
 
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		this.dm = new DMTransactionManagement();
+		this.dm = new DMReportingManagement();
 		this.transactionDAO.setJdbcTemplate(this.jdbc);
+		this.reportingGroupDAO.setJdbcTemplate(this.jdbc);
 		this.dm.setTransactionDAO(transactionDAO);
+		this.dm.setReportingGroupDAO(reportingGroupDAO);
 	}
 
 	@After
@@ -38,41 +41,23 @@ public class DMReportingManagementTest {
 	}
 
 	@Test
-	public void savePurchaseSuccessful() throws ParseException {
-		long timestamp = new SimpleDateFormat("yyyy-MM-dd").parse("2014-11-01")
-				.getTime();
-		when(this.transactionDAO.create(1, 50, 1, "purchase", 0, new Date(timestamp)))
-				.thenReturn(1);
-		boolean actual = this.dm.saveTransaction(1, 50, 1, "purchase", 0, "2014-11-01");
-		assertTrue("Purchase was successfully saved", actual);
+	public void createGroupSuccessful() {
+		ArrayList<Integer> consumers = new ArrayList<Integer>();
+		consumers.add(2);
+		consumers.add(3);
+		when(this.reportingGroupDAO.create("Consumers", consumers)).thenReturn(1);
+		assertTrue(this.dm.createReportingGroup("Consumers", consumers));
+		verify(this.reportingGroupDAO, times(1)).create("Consumers", consumers);
 	}
-
+	
 	@Test
-	public void savePurchaseFailed() throws ParseException {
-		long timestamp = new SimpleDateFormat("yyyy-MM-dd").parse("2014-11-01")
-				.getTime();
-		when(this.transactionDAO.create(1, 500, 1, "purchase", 0, new Date(timestamp)))
-				.thenReturn(0);
-		boolean actual = this.dm.saveTransaction(1, 500, 1, "purchase", 0, "2014-11-01");
-		assertFalse("Purchase was not saved", actual);
+	public void createDuplicateGroupFails() {
+		ArrayList<Integer> consumers = new ArrayList<Integer>();
+		consumers.add(2);
+		consumers.add(3);
+		when(this.reportingGroupDAO.create("Consumers", consumers)).thenReturn(1,0);
+		assertTrue(this.dm.createReportingGroup("Consumers", consumers));
+		assertFalse(this.dm.createReportingGroup("Consumers", consumers));
+		verify(this.reportingGroupDAO, times(2)).create("Consumers", consumers);
 	}
-
-	@Test
-	public void saveSaleFailed()  throws ParseException {
-		long timestamp = new SimpleDateFormat("yyyy-MM-dd").parse("2014-11-01").getTime();
-		when(this.transactionDAO.create(2, 500, 1, "sale", 0, new Date(timestamp)))
-				.thenReturn(0);
-		boolean actual = this.dm.saveTransaction(2, 500, 1, "sale", 0, "2014-11-01");
-		assertFalse("Purchase was successfully saved", actual);
-	}
-
-	@Test
-	public void saveSaleSuccessful()  throws ParseException {
-		long timestamp = new SimpleDateFormat("yyyy-MM-dd").parse("2014-11-01").getTime();
-		when(this.transactionDAO.create(2, 50, 1, "sale", 0, new Date(timestamp))).thenReturn(
-				1);
-		boolean actual = this.dm.saveTransaction(2, 50, 1, "sale", 0, "2014-11-01");
-		assertTrue("Purchase was not saved", actual);
-	}
-
 }

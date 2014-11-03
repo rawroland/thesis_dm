@@ -1,5 +1,7 @@
 package me.rolandawemo.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,7 +13,10 @@ import me.rolandawemo.dao.model.ReportingGroup;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 public class ReportingGroupDAO implements IReportingGroupDAO {
 
@@ -34,13 +39,27 @@ public class ReportingGroupDAO implements IReportingGroupDAO {
 
 	@Override
 	public int create(String name, ArrayList<Integer> members) {
-		String query = "INSERT INTO groups(name) VALUES (?)";
+		final String QUERY = "INSERT INTO groups(name) VALUES (?)";
+		final String PASS_NAME = name;
 		int groupCreated = 0;
-		int groupId = 0;
+		Number groupId = 0;
+		KeyHolder keyholder = new GeneratedKeyHolder();
 		try {
-			groupCreated = this.jdbcTemplate.update(query,
-					new Object[] { name });
-			groupId = this.jdbcTemplate.queryForInt("select last_insert_id()");
+			// groupCreated = this.jdbcTemplate.update(query,
+			// new Object[] { name });
+			groupCreated = this.jdbcTemplate.update(
+					new PreparedStatementCreator() {
+
+						@Override
+						public PreparedStatement createPreparedStatement(
+								Connection con) throws SQLException {
+							PreparedStatement ps = con.prepareStatement(QUERY);
+							ps.setString(1, PASS_NAME);
+							return ps;
+						}
+
+					}, keyholder);
+			groupId = keyholder.getKey();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -51,12 +70,13 @@ public class ReportingGroupDAO implements IReportingGroupDAO {
 		String associationsQuery = "INSERT INTO accounts_groups(accountId,groupId) VALUES ";
 		int numberOfMembers = members.size();
 		Object[] values = new Object[numberOfMembers * 2];
-		int index;
+		int index = 0;
 		for (int accountId : members) {
-			index = members.indexOf(accountId);
 			values[index] = accountId;
-			values[index + 1] = groupId;
-			if (index == numberOfMembers - 1) {
+			index = index + 1;
+			values[index] = groupId;
+			index = index + 1;
+			if (members.indexOf(accountId) == numberOfMembers - 1) {
 				associationsQuery = associationsQuery + "(?,?);";
 			} else {
 				associationsQuery = associationsQuery + "(?,?),";

@@ -1,19 +1,18 @@
 package ws;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
-import me.rolandawemo.dao.TransactionDAO;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.BooleanUtils;
 
+import me.rolandawemo.dao.ReportingGroupDAO;
+import me.rolandawemo.dao.TransactionDAO;
+import me.rolandawemo.dao.model.ReportingGroup;
 import ws.services.ReportingManagementService;
-import ws.services.TransactionManagementService;
 
 public class DMReportingManagement implements ReportingManagementService {
 
 	private TransactionDAO transactionDAO;
+	private ReportingGroupDAO reportingGroupDAO;
 
 	public TransactionDAO getTransactionDAO() {
 		return transactionDAO;
@@ -21,5 +20,29 @@ public class DMReportingManagement implements ReportingManagementService {
 
 	public void setTransactionDAO(TransactionDAO transactionDAO) {
 		this.transactionDAO = transactionDAO;
+	}
+
+	public ReportingGroupDAO getReportingGroupDAO() {
+		return reportingGroupDAO;
+	}
+
+	public void setReportingGroupDAO(ReportingGroupDAO reportingGroupDAO) {
+		this.reportingGroupDAO = reportingGroupDAO;
+	}
+
+	@Override
+	public boolean createReportingGroup(String name, ArrayList<Integer> accounts) {
+		return BooleanUtils.toBoolean(this.reportingGroupDAO.create(name, accounts));
+	}
+
+	@Override
+	public ArrayList<ReportingGroup> searchReportingGroups(int id) {
+		if (0 < id) {
+			ArrayList<ReportingGroup> groups = new ArrayList<ReportingGroup>();
+			groups.add(this.reportingGroupDAO.getById(id));
+			return groups;
+		}
+		
+		return this.reportingGroupDAO.getAll();
 	}
 }

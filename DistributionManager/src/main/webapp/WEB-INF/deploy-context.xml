@@ -33,6 +33,9 @@
 	<bean id="distributionManagerTransactionManagement" class="ws.DMTransactionManagement">
 	    <property name="transactionDAO" ref="transactionDAO"/>
 	</bean>
+	<bean id="distributionManagerReportingManagement" class="ws.DMReportingManagement">
+	    <property name="reportingGroupDAO" ref="reportingGroupDAO"/>
+	</bean>
 
 	<jaxws:endpoint id="authenticate" address="/authenticate">
 		<jaxws:implementor>
@@ -87,6 +90,16 @@
 	<jaxws:endpoint id="transactionManagement" address="/transactions">
 		<jaxws:implementor>
 			<ref bean="distributionManagerTransactionManagement" />
+		</jaxws:implementor>
+		<jaxws:properties>
+			<entry key="mtom-enabled" value="true" />
+			<entry key="attachment-memory-threshold" value="4000000" />
+		</jaxws:properties>
+	</jaxws:endpoint>
+	
+	<jaxws:endpoint id="reportingManagement" address="/reports">
+		<jaxws:implementor>
+			<ref bean="distributionManagerReportingManagement" />
 		</jaxws:implementor>
 		<jaxws:properties>
 			<entry key="mtom-enabled" value="true" />

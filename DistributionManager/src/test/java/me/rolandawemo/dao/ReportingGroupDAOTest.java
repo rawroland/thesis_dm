@@ -1,6 +1,6 @@
 package me.rolandawemo.dao;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -67,11 +67,12 @@ public class ReportingGroupDAOTest {
 				expected, actual);
 		ArrayList<Integer> companyAccount = new ArrayList<Integer>();
 		companyAccount.add(1);
+		companyAccount.add(4);
 		actual = this.reportingGroupDAO.create("Company", companyAccount);
 		expected = 1;
-		assertEquals(
+		assertTrue(
 				"Count of the entries in the db after insert is consistent.",
-				expected, actual);
+				actual>=expected);
 		actual = jdbc.queryForInt("SELECT count(id) from groups where 1");
 		expected = 2;
 		assertEquals(
@@ -79,7 +80,7 @@ public class ReportingGroupDAOTest {
 				expected, actual);
 		actual = jdbc
 				.queryForInt("SELECT count(id) from accounts_groups where 1");
-		expected = 3;
+		expected = 4;
 		assertEquals(
 				"Count of the entries in the db after insert is consistent.",
 				expected, actual);

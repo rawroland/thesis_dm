@@ -6,6 +6,8 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
+import me.rolandawemo.dao.model.ReportingGroup;
+
 @WebService
 public interface ReportingManagementService {
 
@@ -14,5 +16,5 @@ public interface ReportingManagementService {
 			@WebParam(name = "accounts") ArrayList<Integer> accounts);
 
 	@WebMethod
-	public boolean searchReportingGroups(@WebParam(name = "id") int id);
+	public ArrayList<ReportingGroup> searchReportingGroups(@WebParam(name = "id") int id);
 }
