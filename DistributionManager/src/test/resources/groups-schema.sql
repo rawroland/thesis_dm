@@ -1,13 +1,13 @@
 CREATE TABLE IF NOT EXISTS groups (
   id int auto_increment,
   name varchar(50),
-  constraint account_pk PRIMARY KEY (id),
+  constraint group_pk PRIMARY KEY (id),
   constraint unique_groups UNIQUE (name)
 );
 
-CREATE TABLE IF NOT EXISTS accounts_groups (
+CREATE TABLE IF NOT EXISTS clients_groups (
   id int auto_increment,
-  accountId int,
+  clientId int,
   groupId int,
   constraint acg_pk PRIMARY KEY (id)
 );

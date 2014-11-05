@@ -1,5 +1,5 @@
 INSERT INTO `groups` (`id`, `name`) VALUES
 (1, 'Consumers');
-INSERT INTO `accounts_groups` (`id`, `accountId`, `groupId`) VALUES
-(1, 2, 1),
-(2, 3, 1);
+INSERT INTO `clients_groups` (`id`, `clientId`, `groupId`) VALUES
+(1, 4, 1),
+(2, 5, 1);

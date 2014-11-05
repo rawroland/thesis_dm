@@ -35,6 +35,7 @@
 	</bean>
 	<bean id="distributionManagerReportingManagement" class="ws.DMReportingManagement">
 	    <property name="reportingGroupDAO" ref="reportingGroupDAO"/>
+	    <property name="transactionDAO" ref="transactionDAO"/>
 	</bean>
 
 	<jaxws:endpoint id="authenticate" address="/authenticate">

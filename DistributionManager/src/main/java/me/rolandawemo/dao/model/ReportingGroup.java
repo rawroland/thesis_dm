@@ -9,10 +9,11 @@ public class ReportingGroup {
 
 	private int id;
 	private String name;
-	private ArrayList<Integer> accounts;
+	private ArrayList<Integer> clients;
 	
 	public ReportingGroup() {
 		super();
+		this.id = 0;
 	}
 	
 	public ReportingGroup(int id, String name) {
@@ -29,12 +30,12 @@ public class ReportingGroup {
 		this.name = name;
 	}
 
-	public ArrayList<Integer> getAccounts() {
-		return accounts;
+	public ArrayList<Integer> getClients() {
+		return clients;
 	}
 
-	public void setAccounts(ArrayList<Integer> accounts) {
-		this.accounts = accounts;
+	public void setClients(ArrayList<Integer> clients) {
+		this.clients = clients;
 	}
 
 	@Override
@@ -42,7 +43,7 @@ public class ReportingGroup {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((accounts == null) ? 0 : accounts.hashCode());
+				+ ((clients == null) ? 0 : clients.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
@@ -57,10 +58,10 @@ public class ReportingGroup {
 		if (getClass() != obj.getClass())
 			return false;
 		ReportingGroup other = (ReportingGroup) obj;
-		if (accounts == null) {
-			if (other.accounts != null)
+		if (clients == null) {
+			if (other.clients != null)
 				return false;
-		} else if (!accounts.equals(other.accounts))
+		} else if (!clients.equals(other.clients))
 			return false;
 		if (id != other.id)
 			return false;

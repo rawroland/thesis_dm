@@ -67,16 +67,16 @@ public class ReportingGroupDAO implements IReportingGroupDAO {
 			return 0;
 		}
 
-		String associationsQuery = "INSERT INTO accounts_groups(accountId,groupId) VALUES ";
+		String associationsQuery = "INSERT INTO clients_groups(clientId,groupId) VALUES ";
 		int numberOfMembers = members.size();
 		Object[] values = new Object[numberOfMembers * 2];
 		int index = 0;
-		for (int accountId : members) {
-			values[index] = accountId;
+		for (int clientId : members) {
+			values[index] = clientId;
 			index = index + 1;
 			values[index] = groupId;
 			index = index + 1;
-			if (members.indexOf(accountId) == numberOfMembers - 1) {
+			if (members.indexOf(clientId) == numberOfMembers - 1) {
 				associationsQuery = associationsQuery + "(?,?);";
 			} else {
 				associationsQuery = associationsQuery + "(?,?),";
@@ -105,24 +105,24 @@ public class ReportingGroupDAO implements IReportingGroupDAO {
 		}
 
 		for (ReportingGroup group : groups) {
-			query = "SELECT * FROM accounts_groups WHERE groupId = ?";
-			ArrayList<Integer> accounts = new ArrayList<Integer>();
+			query = "SELECT * FROM clients_groups WHERE groupId = ?";
+			ArrayList<Integer> clients = new ArrayList<Integer>();
 			try {
-				accounts = (ArrayList<Integer>) this.jdbcTemplate.query(query,
+				clients = (ArrayList<Integer>) this.jdbcTemplate.query(query,
 						new Object[] { group.getId() },
 						new RowMapper<Integer>() {
 
 							@Override
 							public Integer mapRow(ResultSet rs, int rowNum)
 									throws SQLException {
-								return rs.getInt("accountId");
+								return rs.getInt("clientId");
 							}
 						});
 			} catch (DataAccessException e) {
 				e.printStackTrace();
 			}
 
-			group.setAccounts(accounts);
+			group.setClients(clients);
 		}
 		return groups;
 	}
@@ -138,23 +138,23 @@ public class ReportingGroupDAO implements IReportingGroupDAO {
 			e.printStackTrace();
 		}
 
-		query = "SELECT * FROM accounts_groups WHERE groupId = ?";
-		ArrayList<Integer> accounts = new ArrayList<Integer>();
+		query = "SELECT * FROM clients_groups WHERE groupId = ?";
+		ArrayList<Integer> clients = new ArrayList<Integer>();
 		try {
-			accounts = (ArrayList<Integer>) this.jdbcTemplate.query(query,
+			clients = (ArrayList<Integer>) this.jdbcTemplate.query(query,
 					new Object[] { group.getId() }, new RowMapper<Integer>() {
 
 						@Override
 						public Integer mapRow(ResultSet rs, int rowNum)
 								throws SQLException {
-							return rs.getInt("accountId");
+							return rs.getInt("clientId");
 						}
 					});
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 		}
 
-		group.setAccounts(accounts);
+		group.setClients(clients);
 		return group;
 	}
 

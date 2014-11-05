@@ -5,6 +5,10 @@ import static org.junit.Assert.assertEquals;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
+import me.rolandawemo.dao.model.Transaction;
+import me.rolandawemo.dao.queries.TransactionQuery;
 
 import org.junit.After;
 import org.junit.Before;
@@ -108,7 +112,71 @@ public class TransactionDAOTest {
 		JdbcTemplate jdbc = context.getBean("jdbcTemplate", JdbcTemplate.class);
 		int funds = jdbc.queryForInt("SELECT amount from accounts where id = " + 2);
 		assertEquals("Account was debited", 250000, funds);
+		funds = jdbc.queryForInt("SELECT amount from accounts where id = " + 1);
+		assertEquals("Company was credited", 2250000, funds);
 		int quantity = jdbc.queryForInt("SELECT quantity from products where id = " + 1);
 		assertEquals("Quantity was reduced", 150, quantity);
 	}
+	
+	@DirtiesContext
+	@Test
+	public void getAllSales() {
+		int expectedSize = 4;
+		TransactionQuery query = new TransactionQuery();
+		query.setType("sale");
+		ArrayList<Transaction> transactions = this.transactionDAO.getTransactions(query);
+		int actualSize = transactions.size();
+		assertEquals(expectedSize, actualSize);
+		Transaction firstTransaction = transactions.get(0);
+		assertEquals(40000, firstTransaction.getCost());
+		assertEquals("2014-10-30", firstTransaction.getDate());
+		assertEquals("Sosidef", firstTransaction.getAccount().getClient().getCompany());
+	}
+	
+	@DirtiesContext
+	@Test
+	public void getAllSalesByReportingGroup() {
+		int expectedSize = 4;
+		TransactionQuery query = new TransactionQuery();
+		query.setReportingGroupId(1);
+		ArrayList<Transaction> transactions = this.transactionDAO.getTransactions(query);
+		int actualSize = transactions.size();
+		assertEquals(expectedSize, actualSize);
+		Transaction firstTransaction = transactions.get(0);
+		assertEquals(40000, firstTransaction.getCost());
+		assertEquals("Sosidef", firstTransaction.getAccount().getClient().getCompany());
+	}
+	
+	@DirtiesContext
+	@Test
+	public void getAllPurchases() {
+		int expectedSize = 3;
+		TransactionQuery query = new TransactionQuery();
+		query.setType("purchase");
+		ArrayList<Transaction> transactions = this.transactionDAO.getTransactions(query);
+		int actualSize = transactions.size();
+		assertEquals(expectedSize, actualSize);
+		Transaction firstTransaction = transactions.get(0);
+		assertEquals(500000, firstTransaction.getCost());
+		assertEquals("Orange Sim cards", firstTransaction.getProduct().getName());
+		assertEquals("Orange", firstTransaction.getProduct().getClient().getCompany());
+	}
+	
+	@DirtiesContext
+	@Test
+	public void getAllCompanyPurchaseByAccountId() {
+		int expectedSize = 3;
+		TransactionQuery query = new TransactionQuery();
+		ArrayList<Integer> companyId = new ArrayList<Integer>();
+		companyId.add(1);
+		query.setAccounts(companyId);
+		ArrayList<Transaction> transactions = this.transactionDAO.getTransactions(query);
+		int actualSize = transactions.size();
+		assertEquals(expectedSize, actualSize);
+		Transaction firstTransaction = transactions.get(0);
+		assertEquals(500000, firstTransaction.getCost());
+		assertEquals("Orange Sim cards", firstTransaction.getProduct().getName());
+		assertEquals("Orange", firstTransaction.getProduct().getClient().getCompany());
+	}
+
 }

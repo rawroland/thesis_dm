@@ -7,5 +7,5 @@ CREATE TABLE IF NOT EXISTS transactions (
   cost int,
   date date,
   type varchar(50),
-  constraint client_pk PRIMARY KEY (id)
+  constraint transactions_pk PRIMARY KEY (id)
 );

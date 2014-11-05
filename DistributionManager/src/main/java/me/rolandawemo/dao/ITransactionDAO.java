@@ -1,6 +1,10 @@
 package me.rolandawemo.dao;
 
 import java.sql.Date;
+import java.util.ArrayList;
+
+import me.rolandawemo.dao.model.Transaction;
+import me.rolandawemo.dao.queries.TransactionQuery;
 
 
 /**
@@ -22,4 +26,6 @@ public interface ITransactionDAO {
 	 * @return
 	 */
 	int create(int accountId, int quantity, int productId, String type, int payment, Date date);
+	
+	ArrayList<Transaction> getTransactions(TransactionQuery query);
 }

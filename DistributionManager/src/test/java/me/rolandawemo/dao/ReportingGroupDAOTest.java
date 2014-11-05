@@ -60,7 +60,7 @@ public class ReportingGroupDAOTest {
 				"Count of the entries in the db before insert is consistent.",
 				expected, actual);
 		actual = jdbc
-				.queryForInt("SELECT count(id) from accounts_groups where 1");
+				.queryForInt("SELECT count(id) from clients_groups where 1");
 		expected = 2;
 		assertEquals(
 				"Count of the entries in the db before insert is consistent.",
@@ -79,7 +79,7 @@ public class ReportingGroupDAOTest {
 				"Count of the entries in the db after insert is consistent.",
 				expected, actual);
 		actual = jdbc
-				.queryForInt("SELECT count(id) from accounts_groups where 1");
+				.queryForInt("SELECT count(id) from clients_groups where 1");
 		expected = 4;
 		assertEquals(
 				"Count of the entries in the db after insert is consistent.",
@@ -99,10 +99,10 @@ public class ReportingGroupDAOTest {
 	@Test
 	public void getAllReportingGroups() {
 		ArrayList<Integer> consumers = new ArrayList<Integer>();
-		consumers.add(2);
-		consumers.add(3);
+		consumers.add(4);
+		consumers.add(5);
 		ReportingGroup group = new ReportingGroup(1,"Consumers");
-		group.setAccounts(consumers);
+		group.setClients(consumers);
 		ArrayList<ReportingGroup> expected = new ArrayList<ReportingGroup>();
 		expected.add(group);
 		ArrayList<ReportingGroup> actual = this.reportingGroupDAO.getAll();
@@ -112,10 +112,10 @@ public class ReportingGroupDAOTest {
 	@Test
 	public void getReportingGroupById() {
 		ArrayList<Integer> consumers = new ArrayList<Integer>();
-		consumers.add(2);
-		consumers.add(3);
+		consumers.add(4);
+		consumers.add(5);
 		ReportingGroup expected = new ReportingGroup(1,"Consumers");
-		expected.setAccounts(consumers);
+		expected.setClients(consumers);
 		ReportingGroup actual = this.reportingGroupDAO.getById(1);
 		assertEquals(expected, actual);
 	}

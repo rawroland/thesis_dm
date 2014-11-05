@@ -21,5 +21,9 @@
 		<jdbc:script location="account-data.sql"/>
 		<jdbc:script location="product-schema.sql"/>
 		<jdbc:script location="product-data.sql"/>
+		<jdbc:script location="client-schema.sql"/>
+		<jdbc:script location="client-data.sql"/>
+		<jdbc:script location="groups-schema.sql"/>
+		<jdbc:script location="groups-data.sql"/>
 	</jdbc:embedded-database>
 </beans>

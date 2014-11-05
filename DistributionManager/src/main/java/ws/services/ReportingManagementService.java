@@ -7,6 +7,8 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import me.rolandawemo.dao.model.ReportingGroup;
+import me.rolandawemo.dao.model.Transaction;
+import me.rolandawemo.dao.queries.TransactionQuery;
 
 @WebService
 public interface ReportingManagementService {
@@ -17,4 +19,7 @@ public interface ReportingManagementService {
 
 	@WebMethod
 	public ArrayList<ReportingGroup> searchReportingGroups(@WebParam(name = "id") int id);
+	
+	@WebMethod
+	public ArrayList<Transaction> generateReport(@WebParam(name="query") TransactionQuery query);
 }

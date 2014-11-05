@@ -7,6 +7,8 @@ import org.apache.commons.lang.BooleanUtils;
 import me.rolandawemo.dao.ReportingGroupDAO;
 import me.rolandawemo.dao.TransactionDAO;
 import me.rolandawemo.dao.model.ReportingGroup;
+import me.rolandawemo.dao.model.Transaction;
+import me.rolandawemo.dao.queries.TransactionQuery;
 import ws.services.ReportingManagementService;
 
 public class DMReportingManagement implements ReportingManagementService {
@@ -44,5 +46,10 @@ public class DMReportingManagement implements ReportingManagementService {
 		}
 		
 		return this.reportingGroupDAO.getAll();
+	}
+
+	@Override
+	public ArrayList<Transaction> generateReport(TransactionQuery query) {
+		return this.transactionDAO.getTransactions(query);
 	}
 }
